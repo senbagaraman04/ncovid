@@ -1,11 +1,9 @@
-<!-- <div class="darkGreenText">
-  India nCovid-19 
-    As of {{country.lastupdatedtime}}
-   
-</div> -->
-<marquee>
-  Last Update : {{country.lastupdatedtime}}
-</marquee>
+<div class="darkGreenText">
+ INDIA COVID-19 TRACKER 
+
+</div>
+<hr>
+
 <div class="totalCases">
   <div class="modal-body row">
 
@@ -61,12 +59,25 @@
 
         </mat-card-content>
       </mat-card>
-
-
-
-      <!-- Your second column here -->
     </div>
+   
 
+    <!--Last Update Card-->
+    <div class="col-md-2">
+      <mat-card class="lastUpdate-card darkGreenText">
+        <mat-card-header>
+          <mat-card-title>
+            Updated Time
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <span class="blinking">{{country.lastupdatedtime}}</span> 
+          </mat-card-content>
+
+      </mat-card>
+      
+    </div>
+    
 
   </div>
 </div>
