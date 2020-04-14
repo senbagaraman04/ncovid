@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
         this.country = response.statewise[0];
         this.timeSeriesStates = response.cases_time_series;
         this.states =response.statewise.slice(1);
-        
       });    
   }
 }
