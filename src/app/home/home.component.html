@@ -1,0 +1,73 @@
+<!-- <div class="darkGreenText">
+  India nCovid-19 
+    As of {{country.lastupdatedtime}}
+   
+</div> -->
+<marquee>
+  Last Update : {{country.lastupdatedtime}}
+</marquee>
+<div class="totalCases">
+  <div class="modal-body row">
+
+    <!--Recovered Card-->
+    <div class="col-md-2">
+      <mat-card class="recovered-card greenText">
+        <mat-card-header>
+          <mat-card-title>Recovered</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <small>
+              +{{country.deltarecovered}}
+            </small> {{country.recovered}}
+          </p>
+
+        </mat-card-content>
+      </mat-card>
+
+
+
+    </div>
+
+    <!--Confirmed-->
+    <div class="col-md-2">
+      <mat-card class="confirmed-card redText">
+        <mat-card-header>
+          <mat-card-title>Confirmed</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <small>
+              +{{country.deltaconfirmed}}
+            </small> {{country.confirmed}}
+          </p>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!--Died Card-->
+    <div class="col-md-2">
+      <mat-card class="died-card ashText">
+        <mat-card-header>
+          <mat-card-title>Deaths</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <small>
+              +{{country.deltadeaths}}
+            </small> {{country.deaths}}
+          </p>
+
+        </mat-card-content>
+      </mat-card>
+
+
+
+      <!-- Your second column here -->
+    </div>
+
+
+  </div>
+</div>
+
