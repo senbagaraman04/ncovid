@@ -1,6 +1,8 @@
 <div class="darkGreenText">
-&nbsp;    COVID-19 INDIA TRACKER
-
+&nbsp;    COVID-19 INDIA TRACKER : {{country.lastupdatedtime}}
+<span class="blinking">
+  Lets break the chain ! Stay Indoors Stay Safe
+</span>
 </div>
 <hr>
 
@@ -11,7 +13,8 @@
     <div class="col-md-2">
       <mat-card class="recovered-card greenText">
         <mat-card-header>
-          <mat-card-title>Recovered</mat-card-title>
+          <mat-card-title>
+             <img src="../../assets/house-user-solid.svg" height="20px">Recovered</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p>
@@ -26,12 +29,14 @@
 
 
     </div>
-
+    <br>
     <!--Confirmed-->
     <div class="col-md-2">
       <mat-card class="confirmed-card redText">
         <mat-card-header>
-          <mat-card-title>Confirmed</mat-card-title>
+          <mat-card-title>
+                  <i class="fa fa-hospital-o"></i>
+              Confirmed</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p>
@@ -43,12 +48,14 @@
         </mat-card-content>
       </mat-card>
     </div>
-
+<br>
     <!--Died Card-->
     <div class="col-md-2">
       <mat-card class="died-card ashText">
         <mat-card-header>
-          <mat-card-title>Deaths</mat-card-title>
+          <mat-card-title>
+              <i class="fa fa-coffin"></i>
+              <img src="../../assets/procedures-solid.svg" height="20px"> Deaths</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p>
@@ -60,23 +67,23 @@
         </mat-card-content>
       </mat-card>
     </div>   
-
-    <!--Last Update Card-->
+<br>
+    <!--Active Card-->
     <div class="col-md-2">
-      <mat-card class="lastUpdate-card blueText">
+      <mat-card class="active-card blueText">
         <mat-card-header>
+            
           <mat-card-title>
-            Updated Time
+              <i class="fa fa-medkit"></i>    Active Cases 
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <span class="blinking">{{country.lastupdatedtime}}</span> 
+          <span>{{country.active}}</span>        
           </mat-card-content>
-
       </mat-card>
       
     </div>    
-    
+    <br>
     <div class="col-md-4">
       <strong>Where did the Data come from ?</strong>
       <p>The data is sourced from <a href="https://www.covid19india.org/" target="_blank">Covid19India</a> API, which inturn collects data from various sources.</p>
