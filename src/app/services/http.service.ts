@@ -19,4 +19,13 @@ export class HttpService {
     );
 
   }
+
+
+  getStateData(): Observable<any> {
+    return this.http.get<any>("https://api.covid19india.org/v2/state_district_wise.json").pipe(
+      retry(2)
+    )
+  }
+
+
 }
