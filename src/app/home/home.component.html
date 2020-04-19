@@ -111,7 +111,7 @@
             <!-- Recovered  Column -->
             <ng-container matColumnDef="Recovered">
               <th mat-header-cell *matHeaderCellDef>Total Recovered</th>
-              <td mat-cell *matCellDef="let row"><span class="small redText">+{{row.deltarecovered}}</span>
+              <td mat-cell *matCellDef="let row"><span class="small greenText">+{{row.deltarecovered}}</span>
                 {{row.recovered}}</td>
             </ng-container>
 
@@ -125,7 +125,7 @@
             <!-- Death  Column -->
             <ng-container matColumnDef="Deaths">
               <th mat-header-cell *matHeaderCellDef>Total Death</th>
-              <td mat-cell *matCellDef="let row"><span class="small redText">+{{row.deltadeaths}}</span> {{row.deaths}}
+              <td mat-cell *matCellDef="let row"><span class="small ashText">+{{row.deltadeaths}}</span> {{row.deaths}}
               </td>
             </ng-container>
 
@@ -133,7 +133,7 @@
             <!-- Active  Column -->
             <ng-container matColumnDef="Active">
               <th mat-header-cell *matHeaderCellDef>Total Active</th>
-              <td mat-cell *matCellDef="let row"> {{row.active}}</td>
+              <td mat-cell *matCellDef="let row" class="blueText"> {{row.active}}</td>
             </ng-container>
 
 

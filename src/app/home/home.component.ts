@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.country = response.statewise[0];
         this.timeSeriesStates = response.cases_time_series;
         this.states =response.statewise.slice(1);
-        console.log(this.states)
         this.data = this.states;
       });    
   }
