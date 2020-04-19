@@ -1,20 +1,20 @@
 <div class="darkGreenText">
-&nbsp;    COVID-19 INDIA TRACKER : {{country.lastupdatedtime}}
-<span class="blinking">
-  Lets break the chain ! <strong>Stay Indoors Stay Safe</strong> 
-</span>
+  &nbsp; COVID-19 INDIA TRACKER : <span *ngIf="country">{{country.lastupdatedtime}}</span>
+  <span class="blinking">
+    Lets break the chain ! <strong>Stay Indoors Stay Safe</strong>
+  </span>
 </div>
 <hr>
 
 <div class="totalCases-card">
 
-  <div class="modal-body row">
+  <div class="modal-body row" *ngIf="country">
     <!--Recovered Card-->
     <div class="col-md-2">
       <mat-card class="recovered-card greenText">
         <mat-card-header>
           <mat-card-title>
-             <img src="../../assets/house-user-solid.svg" height="20px">Recovered</mat-card-title>
+            <img src="../../assets/house-user-solid.svg" height="20px">Recovered</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p>
@@ -35,8 +35,8 @@
       <mat-card class="confirmed-card redText">
         <mat-card-header>
           <mat-card-title>
-                  <i class="fa fa-hospital-o"></i>
-              Confirmed</mat-card-title>
+            <i class="fa fa-hospital-o"></i>
+            Confirmed</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p>
@@ -48,14 +48,14 @@
         </mat-card-content>
       </mat-card>
     </div>
-<br>
+    <br>
     <!--Died Card-->
     <div class="col-md-2">
       <mat-card class="died-card ashText">
         <mat-card-header>
           <mat-card-title>
-              <i class="fa fa-coffin"></i>
-              <img src="../../assets/procedures-solid.svg" height="20px"> Deaths</mat-card-title>
+            <i class="fa fa-coffin"></i>
+            <img src="../../assets/procedures-solid.svg" height="20px"> Deaths</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p>
@@ -66,37 +66,95 @@
 
         </mat-card-content>
       </mat-card>
-    </div>   
-<br>
+    </div>
+    <br>
     <!--Active Card-->
     <div class="col-md-2">
       <mat-card class="active-card blueText">
         <mat-card-header>
-            
+
           <mat-card-title>
-              <i class="fa fa-medkit"></i>    Active Cases 
+            <i class="fa fa-medkit"></i> Active Cases
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <span>{{country.active}}</span>        
-          </mat-card-content>
+          <span>{{country.active}}</span>
+        </mat-card-content>
       </mat-card>
-      
-    </div>    
+
+    </div>
     <br>
     <div class="col-md-4">
       <strong>Where did the Data come from ?</strong>
-      <p>The data is sourced from <a href="https://www.covid19india.org/" target="_blank">Covid19India</a> API, which inturn collects data from various sources.</p>
+      <p>The data is sourced from <a href="https://www.covid19india.org/" target="_blank">Covid19India</a> API, which
+        inturn collects data from various sources.</p>
     </div>
 
-    
+
   </div>
 
 
   <div class="modal-boday row">
 
     <div class="col-md-8">
-        <!--Table comes here-->
+      <div class="example-container mat-elevation-z8">
+        <div class="example-table-container">
+
+          <table mat-table [dataSource]="data" class="example-table" matSort *ngIf="country">
+
+            State Column
+            <ng-container matColumnDef="State">
+              <th mat-header-cell *matHeaderCellDef>State</th>
+              <td mat-cell *matCellDef="let row">{{row.state}}</td>
+            </ng-container>
+
+            <!-- Recovered  Column -->
+            <ng-container matColumnDef="Recovered">
+              <th mat-header-cell *matHeaderCellDef>Total Recovered</th>
+              <td mat-cell *matCellDef="let row"><span class="small redText">+{{row.deltarecovered}}</span>
+                {{row.recovered}}</td>
+            </ng-container>
+
+            <!-- Confirmed  Column -->
+            <ng-container matColumnDef="Confirmed">
+              <th mat-header-cell *matHeaderCellDef>Total Confirmed</th>
+              <td mat-cell *matCellDef="let row"><span class="small redText">+{{row.deltaconfirmed}}</span>
+                {{row.confirmed}}</td>
+            </ng-container>
+
+            <!-- Death  Column -->
+            <ng-container matColumnDef="Deaths">
+              <th mat-header-cell *matHeaderCellDef>Total Death</th>
+              <td mat-cell *matCellDef="let row"><span class="small redText">+{{row.deltadeaths}}</span> {{row.deaths}}
+              </td>
+            </ng-container>
+
+
+            <!-- Active  Column -->
+            <ng-container matColumnDef="Active">
+              <th mat-header-cell *matHeaderCellDef>Total Active</th>
+              <td mat-cell *matCellDef="let row"> {{row.active}}</td>
+            </ng-container>
+
+
+            <!-- Disclaimer column -->
+  <ng-container matColumnDef="disclaimer">
+      <td mat-footer-cell *matFooterCellDef colspan="2">
+        The data has been sourced from various entities, we are not responsbile for accuracy
+      </td>
+    </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
+
+          </table>
+        </div>
+
+      </div>
+
     </div>
 
   </div>
@@ -105,4 +163,3 @@
 
 
 </div>
-
