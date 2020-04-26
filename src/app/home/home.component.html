@@ -94,6 +94,11 @@
   </div>
 
 
+  <div class="blinking">
+    Click on each state name to redirect to the corresponding state page.
+    <br>
+  </div>
+
   <!--Table Starts here -->
 
   <div class="modal-boday row" style="width: 100%;height: 100%">
@@ -106,7 +111,7 @@
              <!--  State Column  -->
             <ng-container matColumnDef="State">
               <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.state}}</mat-cell>
+              <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row"> {{row.state}}</mat-cell>
             </ng-container>
 
             <!-- Recovered  Column -->
@@ -151,7 +156,7 @@
 
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
             <mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row" ></mat-footer-row>
 
           </mat-table>

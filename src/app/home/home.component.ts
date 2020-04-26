@@ -10,7 +10,8 @@ import {MatSort} from '@angular/material/sort';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith} from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   subscription: Subscription;
   statusText: string;
 
-  constructor(private httpService:HttpService,private _httpClient: HttpClient) { }
+  constructor(private httpService:HttpService,private _httpClient: HttpClient,private router:Router) { }
 
   ngOnInit(): void {
 
@@ -48,6 +49,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
    this.data = this.states;
   }
+
+
+  rowRedirect(row, Event: MatTabChangeEvent) {
+    console.log(row);
+    sessionStorage.setItem("rowData", JSON.stringify(row));
+    this.router.navigate(['/state-wise/stateWise']);
+  }
+
+
 
 }
 

@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { StateWiseComponent } from './state-wise/state-wise.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent}
+  { path: '', component: HomeComponent},
+  {path:'state-wise/stateWise',component:StateWiseComponent}
 ];
 
 @NgModule({
