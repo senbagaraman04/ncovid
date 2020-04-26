@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   states: Statewise[];
   subscription: Subscription;
   statusText: string;
+  displayedColumns: string[] = ['State','Recovered','Confirmed','Deaths','Active'];
+  data = this.states;
 
   constructor(private httpService:HttpService,private _httpClient: HttpClient,private router:Router) { }
 
@@ -38,12 +40,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.timeSeriesStates = response.cases_time_series;
         this.states =response.statewise.slice(1);
         this.data = this.states;
+        console.log(this.states);
       });    
   }
 
 
-  displayedColumns: string[] = ['State','Recovered','Confirmed','Deaths','Active'];
-  data = this.states;
+ 
 
 
   ngAfterViewInit() {

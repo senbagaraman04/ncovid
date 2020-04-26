@@ -1,0 +1,31 @@
+.darkGreenText{
+    color: darkgreen;
+  }
+  
+  .greenText {
+    color: green;
+  }
+  .blueText{
+    color:#007bff;
+  }
+  
+  .ashText{
+    color: #b2beb5 ;  
+  }
+  
+  .redText {
+    color: red;
+  }
+  
+  .blinking{
+    animation:blinkingText 1.2s infinite;
+  }
+  
+  @keyframes blinkingText{
+    0%{     color: #000;    }
+    49%{    color: #000; }
+    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: #000;    }
+  }
+  
