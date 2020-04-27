@@ -118,7 +118,7 @@
             <ng-container matColumnDef="Recovered">
                 <mat-header-cell *matHeaderCellDef> Total Recovered </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                <span class="small greenText">+{{row.deltarecovered}}</span>
+                <span class="small greenText">+{{row.deltarecovered}}</span>&nbsp;
                 {{row.recovered}}</mat-cell>
             </ng-container>
 
@@ -126,7 +126,7 @@
             <ng-container matColumnDef="Confirmed">
               <mat-header-cell *matHeaderCellDef>Total Confirmed </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                <span class="small redText">+{{row.deltaconfirmed}}</span>
+                <span class="small redText">+{{row.deltaconfirmed}}</span>&nbsp;
                 {{row.confirmed}}
               </mat-cell >
             </ng-container>
@@ -134,7 +134,7 @@
             <!-- Death  Column -->
             <ng-container matColumnDef="Deaths">
                 <mat-header-cell *matHeaderCellDef>Total Death </mat-header-cell>
-              <mat-cell *matCellDef="let row"><span class="small ashText">+{{row.deltadeaths}}</span> {{row.deaths}}
+              <mat-cell *matCellDef="let row"><span class="small ashText">+{{row.deltadeaths}}</span>&nbsp; {{row.deaths}}
               </mat-cell>
             </ng-container>
 
