@@ -83,7 +83,7 @@
             <mat-card-header>
 
                 <mat-card-title>
-                    <i class="fa fa-medkit"></i> Active Cases
+                    <i class="fa fa-medkit"></i> Active
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
@@ -112,7 +112,10 @@
                          <!--  District Column  -->
                         <ng-container matColumnDef="District">
                           <mat-header-cell *matHeaderCellDef> District </mat-header-cell>
-                          <mat-cell   *matCellDef="let row"> {{row.district}}</mat-cell>
+                          <mat-cell   *matCellDef="let row">
+                               {{row.district}}&nbsp;
+                               <i class="fa fa-info-circle" [title]="row.statenotes" *ngIf="row.statenotes"></i> 
+                            </mat-cell>
                         </ng-container>
 
                            <!--  Active Column  -->

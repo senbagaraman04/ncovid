@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.timeSeriesStates = response.cases_time_series;
         this.states =response.statewise.slice(1);
         this.data = this.states;
-       // console.log(this.states);
         console.log(this.loading)
+        console.log(this.states)
         this.loading = false;
       });    
   }

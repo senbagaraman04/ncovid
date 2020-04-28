@@ -19,6 +19,7 @@ export interface Statewise {
   recovered: string;
   state: string;
   statecode: string;
+  statenotes: string;
 }
 
 export interface Tested {

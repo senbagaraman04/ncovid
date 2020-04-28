@@ -111,7 +111,12 @@
              <!--  State Column  -->
             <ng-container matColumnDef="State">
               <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
-              <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row"> {{row.state}}</mat-cell>
+              <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row">
+
+              
+                 {{row.state}} &nbsp;   <i class="fa fa-info-circle" [title]="row.statenotes" *ngIf="row.statenotes"></i> 
+                
+                </mat-cell>
             </ng-container>
 
             <!-- Recovered  Column -->
