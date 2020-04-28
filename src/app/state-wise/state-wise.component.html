@@ -112,13 +112,13 @@
                          <!--  District Column  -->
                         <ng-container matColumnDef="District">
                           <mat-header-cell *matHeaderCellDef> District </mat-header-cell>
-                          <mat-cell [ngClass]="row.active > 15 ? 'redText' : 'greenText'"  *matCellDef="let row"> {{row.district}}</mat-cell>
+                          <mat-cell   *matCellDef="let row"> {{row.district}}</mat-cell>
                         </ng-container>
 
                            <!--  Active Column  -->
                            <ng-container matColumnDef="Active">
                                 <mat-header-cell *matHeaderCellDef> Active </mat-header-cell>
-                                <mat-cell [ngClass]="row.active > 15 ? 'redText' : 'greenText'"  *matCellDef="let row"> {{row.active}}</mat-cell>
+                                <mat-cell   *matCellDef="let row"> {{row.active}}</mat-cell>
                               </ng-container>
             
 
@@ -126,20 +126,20 @@
                            <!--  Confirmed Column  -->
                            <ng-container matColumnDef="Confirmed">
                                 <mat-header-cell *matHeaderCellDef> Confirmed </mat-header-cell>
-                                <mat-cell  [ngClass]="row.active > 15 ? 'redText' : 'greenText'" *matCellDef="let row"> <span class="small redText"> +{{row.delta.confirmed}} </span> &nbsp; {{row.confirmed}}</mat-cell>
+                                <mat-cell  [ngClass]="row.delta.confirmed >  0 ? 'blinking ' : ''" *matCellDef="let row"> <span class="small redText"> +{{row.delta.confirmed}} </span> &nbsp; {{row.confirmed}}</mat-cell>
                               </ng-container>
 
                               
                                 <!--  Recovered Column  -->
                            <ng-container matColumnDef="Recovered">
                                 <mat-header-cell *matHeaderCellDef> Recovered </mat-header-cell>
-                                <mat-cell  [ngClass]="row.active > 15 ? 'redText' : 'greenText'" *matCellDef="let row"> <span class="small greenText">+ {{row.delta.recovered}} </span>&nbsp;  {{row.recovered}}</mat-cell>
+                                <mat-cell   *matCellDef="let row"> <span class="small greenText">+ {{row.delta.recovered}} </span>&nbsp;  {{row.recovered}}</mat-cell>
                               </ng-container>
 
                                 <!--  Deceased Column  -->
                            <ng-container matColumnDef="Deaths">
                                 <mat-header-cell *matHeaderCellDef> Died </mat-header-cell>
-                                <mat-cell [ngClass]="row.active > 15 ? 'redText' : 'greenText'"  *matCellDef="let row"> <span class="small ashText">+ {{row.delta.deceased}} </span> &nbsp; {{row.deceased}}</mat-cell>
+                                <mat-cell   *matCellDef="let row"> <span class="small ashText">+ {{row.delta.deceased}} </span> &nbsp; {{row.deceased}}</mat-cell>
                               </ng-container>
             
             
