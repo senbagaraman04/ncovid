@@ -30,17 +30,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['State','Recovered','Confirmed','Deaths','Active'];
   data = this.states;
 
+  loading : boolean = true;
   constructor(private httpService:HttpService,private _httpClient: HttpClient,private router:Router) { }
 
   ngOnInit(): void {
 
+    console.log(this.loading)
     this.subscription = timer(0, 10000).pipe(switchMap(() => this.httpService.getfullData())).subscribe(response => 
       {
         this.country = response.statewise[0];
         this.timeSeriesStates = response.cases_time_series;
         this.states =response.statewise.slice(1);
         this.data = this.states;
-        console.log(this.states);
+       // console.log(this.states);
+        console.log(this.loading)
+        this.loading = false;
       });    
   }
 

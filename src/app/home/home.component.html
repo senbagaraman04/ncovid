@@ -6,7 +6,7 @@
 </div>
 <hr>
 
-<div class="totalCases-card">
+<div class="totalCases-card" *ngIf="!loading">
 
   <div class="modal-body row" *ngIf="country">
     <!--Recovered Card-->
@@ -74,7 +74,7 @@
         <mat-card-header>
 
           <mat-card-title>
-            <i class="fa fa-medkit"></i> Active Cases
+            <i class="fa fa-medkit"></i> Active
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -168,4 +168,8 @@
 
 
 
+</div>
+
+<div class="loading card" *ngIf="loading">
+     We are gathering data for you... Please hold on
 </div>
