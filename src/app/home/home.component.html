@@ -100,7 +100,7 @@
 
   <!--Table Starts here -->
 
-  <div class="modal-boday row" style="width: 100%;height: 100%">
+  <div class="example-container ">
 
     <div class="col-md-12">
 
@@ -109,27 +109,26 @@
 
              <!--  State Column  -->
             <ng-container matColumnDef="State">
-              <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
-              <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row">
-
-              
-                 {{row.state}} &nbsp;   <i class="fa fa-info-circle" [title]="row.statenotes" *ngIf="row.statenotes"></i> 
-                
+              <mat-header-cell *matHeaderCellDef mat-sort-header> State </mat-header-cell>
+              <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row" data-label="State">              
+                 {{row.state}} &nbsp;  
+                  <i class="fa fa-info-circle" [title]="row.statenotes" *ngIf="row.statenotes"></i>                 
                 </mat-cell>
             </ng-container>
 
             <!-- Recovered  Column -->
             <ng-container matColumnDef="Recovered">
-                <mat-header-cell *matHeaderCellDef> Total Recovered </mat-header-cell>
-              <mat-cell *matCellDef="let row">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Total Recovered </mat-header-cell>
+              <mat-cell *matCellDef="let row" data-label="Recovered">
                 <span class="small greenText">+{{row.deltarecovered}}</span>&nbsp;
-                {{row.recovered}}</mat-cell>
+                {{row.recovered}}
+              </mat-cell>
             </ng-container>
 
             <!-- Confirmed  Column -->
             <ng-container matColumnDef="Confirmed">
-              <mat-header-cell *matHeaderCellDef>Total Confirmed </mat-header-cell>
-              <mat-cell *matCellDef="let row">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Total Confirmed </mat-header-cell>
+              <mat-cell *matCellDef="let row" data-label="Confirmed">
                 <span class="small redText">+{{row.deltaconfirmed}}</span>&nbsp;
                 {{row.confirmed}}
               </mat-cell >
@@ -137,8 +136,10 @@
 
             <!-- Death  Column -->
             <ng-container matColumnDef="Deaths">
-                <mat-header-cell *matHeaderCellDef>Total Death </mat-header-cell>
-              <mat-cell *matCellDef="let row"><span class="small ashText">+{{row.deltadeaths}}</span>&nbsp; {{row.deaths}}
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Total Death </mat-header-cell>
+              <mat-cell *matCellDef="let row" data-label="Deaths">
+                <span class="small ashText">+{{row.deltadeaths}}</span>&nbsp;
+                 {{row.deaths}}
               </mat-cell>
             </ng-container>
 
@@ -146,7 +147,9 @@
             <!-- Active  Column -->
             <ng-container matColumnDef="Active">
                 <mat-header-cell *matHeaderCellDef>Total Active </mat-header-cell>
-              <mat-cell *matCellDef="let row" class="blueText"> {{row.active}}</mat-cell>
+              <mat-cell *matCellDef="let row" class="blueText" data-label="Active"> {{row.active}}
+
+              </mat-cell>
             </ng-container>
 
 
