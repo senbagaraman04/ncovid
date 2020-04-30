@@ -110,7 +110,7 @@
 <!--District Wise Row comes here-->
 
 <div class="modal-row">
-        <div class="modal-boday row" style="width: 100%;height: 100%">
+        <div class="example-container">
 
                 <div class="col-md-12">
             
@@ -120,7 +120,7 @@
                          <!--  District Column  -->
                         <ng-container matColumnDef="District">
                           <mat-header-cell *matHeaderCellDef> District </mat-header-cell>
-                          <mat-cell   *matCellDef="let row">
+                          <mat-cell   *matCellDef="let row" data-label="District">
                                {{row.district}}&nbsp;
                                <i class="fa fa-info-circle" [title]="row.statenotes" *ngIf="row.statenotes"></i> 
                             </mat-cell>
@@ -129,28 +129,28 @@
                            <!--  Active Column  -->
                            <ng-container matColumnDef="Active">
                                 <mat-header-cell *matHeaderCellDef> Active </mat-header-cell>
-                                <mat-cell   *matCellDef="let row"> {{row.active}}</mat-cell>
+                                <mat-cell class="blueText"   *matCellDef="let row" data-label="Active"> {{row.active}}</mat-cell>
                               </ng-container>
             
 
                               
                            <!--  Confirmed Column  -->
                            <ng-container matColumnDef="Confirmed">
-                                <mat-header-cell *matHeaderCellDef> Confirmed </mat-header-cell>
-                                <mat-cell  [ngClass]="row.delta.confirmed >  0 ? 'blinking ' : ''" *matCellDef="let row"> <span class="small redText"> +{{row.delta.confirmed}} </span> &nbsp; {{row.confirmed}}</mat-cell>
+                                <mat-header-cell *matHeaderCellDef > Confirmed </mat-header-cell>
+                                <mat-cell data-label="Confirmed"  [ngClass]="row.delta.confirmed >  0 ? 'blinking ' : ''" *matCellDef="let row"> <span class="small redText"> +{{row.delta.confirmed}} </span> &nbsp; {{row.confirmed}}</mat-cell>
                               </ng-container>
 
                               
                                 <!--  Recovered Column  -->
                            <ng-container matColumnDef="Recovered">
                                 <mat-header-cell *matHeaderCellDef> Recovered </mat-header-cell>
-                                <mat-cell   *matCellDef="let row"> <span class="small greenText">+ {{row.delta.recovered}} </span>&nbsp;  {{row.recovered}}</mat-cell>
+                                <mat-cell  data-label="Recovered"  *matCellDef="let row"> <span class="small greenText">+ {{row.delta.recovered}} </span>&nbsp;  {{row.recovered}}</mat-cell>
                               </ng-container>
 
                                 <!--  Deceased Column  -->
                            <ng-container matColumnDef="Deaths">
                                 <mat-header-cell *matHeaderCellDef> Died </mat-header-cell>
-                                <mat-cell   *matCellDef="let row"> <span class="small ashText">+ {{row.delta.deceased}} </span> &nbsp; {{row.deceased}}</mat-cell>
+                                <mat-cell  data-label="Deaths"  *matCellDef="let row"> <span class="small ashText">+ {{row.delta.deceased}} </span> &nbsp; {{row.deceased}}</mat-cell>
                               </ng-container>
             
             
