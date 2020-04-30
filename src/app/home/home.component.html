@@ -1,7 +1,9 @@
-<div class="darkGreenText">
+
+<div class="redText" >
+    <br><br><br>
   &nbsp; COVID-19 INDIA TRACKER : <span *ngIf="country">{{country.lastupdatedtime}}</span>
   <span class="blinking">
-    Lets break the chain ! <strong>Stay Indoors Stay Safe</strong>
+    Lets break the chain ! <strong >Stay Indoors Stay Safe</strong>
   </span>
 </div>
 <hr>
@@ -9,14 +11,16 @@
 <div class="totalCases-card" *ngIf="!loading">
 
   <div class="modal-body row" *ngIf="country">
+
+
     <!--Recovered Card-->
     <div class="col-md-2">
       <mat-card class="recovered-card greenText">
         <mat-card-header>
-          <mat-card-title>
-            <img src="../../assets/house-user-solid.svg" height="20px">Recovered</mat-card-title>
+          <mat-card-title class="greenText">  Recovered</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+
+        <mat-card-content class="greenText">
           <p>
             <small>
               +{{country.deltarecovered}}
@@ -25,20 +29,18 @@
 
         </mat-card-content>
       </mat-card>
-
-
-
     </div>
+    <!--/Recovered Card-->
     <br>
-    <!--Confirmed-->
+
+
+    <!--Confirmed Card-->
     <div class="col-md-2">
       <mat-card class="confirmed-card redText">
         <mat-card-header>
-          <mat-card-title>
-            <i class="fa fa-hospital-o"></i>
-            Confirmed</mat-card-title>
+          <mat-card-title class="redText"> Confirmed</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="redText">
           <p>
             <small>
               +{{country.deltaconfirmed}}
@@ -48,16 +50,17 @@
         </mat-card-content>
       </mat-card>
     </div>
+        <!--/Confirmed Card-->
     <br>
+
+
     <!--Died Card-->
     <div class="col-md-2">
       <mat-card class="died-card ashText">
         <mat-card-header>
-          <mat-card-title>
-            <i class="fa fa-coffin"></i>
-            <img src="../../assets/procedures-solid.svg" height="20px"> Deaths</mat-card-title>
+          <mat-card-title class="ashText"> Deaths</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="ashText">
           <p>
             <small>
               +{{country.deltadeaths}}
@@ -67,22 +70,23 @@
         </mat-card-content>
       </mat-card>
     </div>
+      <!--/Deceased Card-->
     <br>
+
+
     <!--Active Card-->
     <div class="col-md-2">
       <mat-card class="active-card blueText">
         <mat-card-header>
-
-          <mat-card-title>
-            <i class="fa fa-medkit"></i> Active
-          </mat-card-title>
+          <mat-card-title class="blueText">Active</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="blueText">
           <span>{{country.active}}</span>
         </mat-card-content>
       </mat-card>
-
     </div>
+<!--/Active Card-->
+
     <br>
     <div class="col-md-4">
       <strong>Where did the Data come from ?</strong>
@@ -93,7 +97,7 @@
   </div>
 
 
-  <div class="blinking">
+  <div class="blinking redText">
     Click on each state name to redirect to the corresponding state page.
     <br>
   </div>
