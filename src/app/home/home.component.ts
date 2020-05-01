@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
-import {CovidData, Statewise, CasesTimeSeries} from '../services/covidinterface.service';
+import { Statewise, CasesTimeSeries} from '../services/covidinterface.service';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { ViewChild, AfterViewInit} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {merge, Observable, of as observableOf} from 'rxjs';
-import {catchError, map, startWith} from 'rxjs/operators';
-import { MatTableDataSource } from '@angular/material/table';
+import {  AfterViewInit} from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 
@@ -42,8 +37,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.timeSeriesStates = response.cases_time_series;
         this.states =response.statewise.slice(1);
         this.data = this.states;
-        console.log(this.loading)
-        console.log(this.states)
         this.loading = false;
       });    
   }
@@ -58,7 +51,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   rowRedirect(row, Event: MatTabChangeEvent) {
-    console.log(row);
     sessionStorage.setItem("rowData", JSON.stringify(row));
     this.router.navigate(['/state-wise/stateWise']);
   }
