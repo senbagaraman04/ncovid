@@ -16,9 +16,22 @@ The content of the table is center aligned due to the class added to appcomponen
 
     <div class="col-md-4">
         <strong> {{rowData.state}}</strong>
+        <div class="mobileHome">
+                <button class="mdc-fab" aria-label="Home">
+                        <div class="mdc-fab__ripple"></div>
+                        <span class="mdc-fab__icon material-icons">home</span>
+                      </button>
+        </div>
     </div>
-
+   
 </div>
+
+
+
+
+
+
+
 
 <!--/State Name-->
 <div *ngIf="!noActualCase">

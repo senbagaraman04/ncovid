@@ -1,1 +1,22 @@
 /*SCSS related to state-wise component has been moved to style.scss to avoid duplicacy.*/
+
+@media screen and (max-width: 960px) {
+
+    .mobileHome {
+        display:block !important;
+        button.mdc-fab {
+            margin-left: 80%;
+        }
+        top: auto !important;
+        right: 20px !important;
+        bottom: 10px !important;
+        left: auto !important;
+        position: fixed !important;
+    }
+
+}
+
+
+.mobileHome {
+    display:none;
+}
