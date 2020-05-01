@@ -6,95 +6,95 @@
     Lets break the chain ! <strong >Stay Indoors Stay Safe</strong>
   </span>
 </div>
+
 <hr>
 
 <div class="totalCases-card" *ngIf="!loading">
 
-  <div class="modal-body row" *ngIf="country">
 
 
-    <!--Recovered Card-->
-    <div class="col-md-2">
-      <mat-card class="recovered-card greenText">
-        <mat-card-header>
-          <mat-card-title class="greenText">  Recovered</mat-card-title>
-        </mat-card-header>
-
-        <mat-card-content class="greenText">
-          <p>
-            <small>
-              +{{country.deltarecovered}}
-            </small> {{country.recovered}}
-          </p>
-
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <!--/Recovered Card-->
     <br>
 
+    <div class="row">
 
-    <!--Confirmed Card-->
-    <div class="col-md-2">
-      <mat-card class="confirmed-card redText">
-        <mat-card-header>
-          <mat-card-title class="redText"> Confirmed</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="redText">
-          <p>
-            <small>
-              +{{country.deltaconfirmed}}
-            </small> {{country.confirmed}}
-          </p>
+      <!-- Card One  -->
+        <div class="col-md-3">
+                      
+          <div class="card-panel teal">
+              <mat-card class="recovered-card greenText">
+                  <mat-card-header>
+                    <mat-card-title class="greenText">  Recovered</mat-card-title>
+                  </mat-card-header>
+          
+                  <mat-card-content class="greenText">
+                    <p> <small> +{{country.deltarecovered}} </small> {{country.recovered}} </p>          
+                  </mat-card-content>
+                </mat-card>         
+        </div>
+        </div>
+<!-- Card Two  -->
+          <div class="col-md-3">
+            <div class="card-panel teal">
+                <mat-card class="confirmed-card redText">
+                    <mat-card-header>
+                      <mat-card-title class="redText"> Confirmed</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="redText">
+                      <p>
+                        <small>
+                          +{{country.deltaconfirmed}}
+                        </small> {{country.confirmed}}
+                      </p>
+            
+                    </mat-card-content>
+                  </mat-card>
+            </div>
+          </div>
+<!-- Card Three  -->
+            <div class="col-md-3">
+              <div class="card-panel teal">
+                  <mat-card class="died-card ashText">
+                      <mat-card-header>
+                        <mat-card-title class="ashText"> Deaths</mat-card-title>
+                      </mat-card-header>
+                      <mat-card-content class="ashText">
+                        <p>
+                          <small>
+                            +{{country.deltadeaths}}
+                          </small> {{country.deaths}}
+                        </p>
+              
+                      </mat-card-content>
+                    </mat-card>
+              </div>
+            </div>
 
-        </mat-card-content>
-      </mat-card>
-    </div>
-        <!--/Confirmed Card-->
+<!-- Card Four  -->
+            <div class="col-md-3">
+                <div class="card-panel teal">
+                    <mat-card class="active-card blueText">
+                        <mat-card-header>
+                          <mat-card-title class="blueText">Active</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="blueText">
+                          <span>{{country.active}}</span>
+                        </mat-card-content>
+                      </mat-card>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
     <br>
-
-
-    <!--Died Card-->
-    <div class="col-md-2">
-      <mat-card class="died-card ashText">
-        <mat-card-header>
-          <mat-card-title class="ashText"> Deaths</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="ashText">
-          <p>
-            <small>
-              +{{country.deltadeaths}}
-            </small> {{country.deaths}}
-          </p>
-
-        </mat-card-content>
-      </mat-card>
-    </div>
-      <!--/Deceased Card-->
-    <br>
-
-
-    <!--Active Card-->
-    <div class="col-md-2">
-      <mat-card class="active-card blueText">
-        <mat-card-header>
-          <mat-card-title class="blueText">Active</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="blueText">
-          <span>{{country.active}}</span>
-        </mat-card-content>
-      </mat-card>
-    </div>
-<!--/Active Card-->
-
-    <br>
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
       <strong>Where did the Data come from ?</strong>
       <p> The data has been injected from <a href="https://www.covid19india.org/" target="_blank">Covid19India</a> API.</p>
-    </div>
+    </div> -->
 
 
-  </div>
 
 
   <div class="blinking redText">
@@ -181,6 +181,9 @@
 
 </div>
 
+
+
+<!--If page is Loading show the below content-->
 <div class="loading card" *ngIf="loading">
      We are gathering data for you... Please hold on
 </div>
