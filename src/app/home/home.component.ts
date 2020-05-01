@@ -3,10 +3,10 @@ import { HttpService } from '../services/http.service';
 import { Statewise, CasesTimeSeries} from '../services/covidinterface.service';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 import {  AfterViewInit} from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -26,7 +26,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   data = this.states;
 
   loading : boolean = true;
-  constructor(private httpService:HttpService,private _httpClient: HttpClient,private router:Router) { }
+
+  constructor(private httpService:HttpService,private router:Router) { }
+
 
   ngOnInit(): void {
 
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.data = this.states;
         this.loading = false;
       });    
+
   }
 
 
