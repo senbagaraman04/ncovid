@@ -1,9 +1,22 @@
+<!--
 
-<div class="redText" >
-    <br><br><br>
+@Helpbook:
+
+The cards are created using materialize css
+
+The content of the table is center aligned due to the class added to appcomponent.
+
+
+-->
+
+
+
+
+<div class="redText">
+  <br><br><br>
   &nbsp; COVID-19 INDIA TRACKER : <span *ngIf="country">{{country.lastupdatedtime}}</span>
   <span class="blinking">
-    Lets break the chain ! <strong >Stay Indoors Stay Safe</strong>
+    Lets break the chain ! <strong>Stay Indoors Stay Safe</strong>
   </span>
 </div>
 
@@ -13,83 +26,83 @@
 
 
 
-    <br>
+  <br>
 
-    <div class="row">
+  <div class="row">
 
-      <!-- Card One  -->
-        <div class="col-md-3">
-                      
-          <div class="card-panel teal">
-              <mat-card class="recovered-card greenText">
-                  <mat-card-header>
-                    <mat-card-title class="greenText">  Recovered</mat-card-title>
-                  </mat-card-header>
-          
-                  <mat-card-content class="greenText">
-                    <p> <small> +{{country.deltarecovered}} </small> {{country.recovered}} </p>          
-                  </mat-card-content>
-                </mat-card>         
-        </div>
-        </div>
-<!-- Card Two  -->
-          <div class="col-md-3">
-            <div class="card-panel teal">
-                <mat-card class="confirmed-card redText">
-                    <mat-card-header>
-                      <mat-card-title class="redText"> Confirmed</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content class="redText">
-                      <p>
-                        <small>
-                          +{{country.deltaconfirmed}}
-                        </small> {{country.confirmed}}
-                      </p>
-            
-                    </mat-card-content>
-                  </mat-card>
-            </div>
-          </div>
-<!-- Card Three  -->
-            <div class="col-md-3">
-              <div class="card-panel teal">
-                  <mat-card class="died-card ashText">
-                      <mat-card-header>
-                        <mat-card-title class="ashText"> Deaths</mat-card-title>
-                      </mat-card-header>
-                      <mat-card-content class="ashText">
-                        <p>
-                          <small>
-                            +{{country.deltadeaths}}
-                          </small> {{country.deaths}}
-                        </p>
-              
-                      </mat-card-content>
-                    </mat-card>
-              </div>
-            </div>
+    <!-- Card One  -->
+    <div class="col-md-3">
 
-<!-- Card Four  -->
-            <div class="col-md-3">
-                <div class="card-panel teal">
-                    <mat-card class="active-card blueText">
-                        <mat-card-header>
-                          <mat-card-title class="blueText">Active</mat-card-title>
-                        </mat-card-header>
-                        <mat-card-content class="blueText">
-                          <span>{{country.active}}</span>
-                        </mat-card-content>
-                      </mat-card>
-                </div>
-            </div>
+      <div class="card-panel teal">
+        <mat-card class="recovered-card greenText">
+          <mat-card-header>
+            <mat-card-title class="greenText"> Recovered</mat-card-title>
+          </mat-card-header>
 
-        </div>
+          <mat-card-content class="greenText">
+            <p> <small> +{{country.deltarecovered}} </small> {{country.recovered}} </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <!-- Card Two  -->
+    <div class="col-md-3">
+      <div class="card-panel teal">
+        <mat-card class="confirmed-card redText">
+          <mat-card-header>
+            <mat-card-title class="redText"> Confirmed</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="redText">
+            <p>
+              <small>
+                +{{country.deltaconfirmed}}
+              </small> {{country.confirmed}}
+            </p>
 
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <!-- Card Three  -->
+    <div class="col-md-3">
+      <div class="card-panel teal">
+        <mat-card class="died-card ashText">
+          <mat-card-header>
+            <mat-card-title class="ashText"> Deaths</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="ashText">
+            <p>
+              <small>
+                +{{country.deltadeaths}}
+              </small> {{country.deaths}}
+            </p>
 
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Card Four  -->
+    <div class="col-md-3">
+      <div class="card-panel teal">
+        <mat-card class="active-card blueText">
+          <mat-card-header>
+            <mat-card-title class="blueText">Active</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="blueText">
+            <span>{{country.active}}</span>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
 
 
-    <br>
-    <!-- <div class="col-md-4">
+
+
+  <br>
+  <!-- <div class="col-md-4">
       <strong>Where did the Data come from ?</strong>
       <p> The data has been injected from <a href="https://www.covid19india.org/" target="_blank">Covid19India</a> API.</p>
     </div> -->
@@ -108,72 +121,73 @@
 
     <div class="col-md-12">
 
-          <mat-table [dataSource]="data" class="mat-elevation-z8" matSort *ngIf="country">
+      <mat-table [dataSource]="data" class="mat-elevation-z8" matSort *ngIf="country">
 
 
-             <!--  State Column  -->
-            <ng-container matColumnDef="State">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> State </mat-header-cell>
-              <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row" data-label="State">              
-                 {{row.state}} &nbsp;  
-                  <i class="fa fa-info-circle" [title]="row.statenotes" *ngIf="row.statenotes"></i>                 
-                </mat-cell>
-            </ng-container>
+        <!--  State Column  -->
+        <ng-container matColumnDef="State">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> State </mat-header-cell>
+          <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row" data-label="State">
+            {{row.state}} &nbsp;
+            <i class="fa fa-info-circle" [title]="row.statenotes" *ngIf="row.statenotes"></i>
+          </mat-cell>
+        </ng-container>
 
-            <!-- Recovered  Column -->
-            <ng-container matColumnDef="Recovered">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Total Recovered </mat-header-cell>
-              <mat-cell *matCellDef="let row" data-label="Recovered">
-                <span class="small greenText">+{{row.deltarecovered}}</span>&nbsp;
-                {{row.recovered}}
-              </mat-cell>
-            </ng-container>
+        <!-- Recovered  Column -->
+        <ng-container matColumnDef="Recovered">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Total Recovered </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Recovered">
+            <span class="small greenText">+{{row.deltarecovered}}</span>&nbsp;
+            {{row.recovered}}
+          </mat-cell>
+        </ng-container>
 
-            <!-- Confirmed  Column -->
-            <ng-container matColumnDef="Confirmed">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Total Confirmed </mat-header-cell>
-              <mat-cell *matCellDef="let row" data-label="Confirmed">
-                <span class="small redText">+{{row.deltaconfirmed}}</span>&nbsp;
-                {{row.confirmed}}
-              </mat-cell >
-            </ng-container>
+        <!-- Confirmed  Column -->
+        <ng-container matColumnDef="Confirmed">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Total Confirmed </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Confirmed">
+            <span class="small redText">+{{row.deltaconfirmed}}</span>&nbsp;
+            {{row.confirmed}}
+          </mat-cell>
+        </ng-container>
 
-            <!-- Death  Column -->
-            <ng-container matColumnDef="Deaths">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Total Death </mat-header-cell>
-              <mat-cell *matCellDef="let row" data-label="Deaths">
-                <span class="small ashText">+{{row.deltadeaths}}</span>&nbsp;
-                 {{row.deaths}}
-              </mat-cell>
-            </ng-container>
-
-
-            <!-- Active  Column -->
-            <ng-container matColumnDef="Active">
-                <mat-header-cell *matHeaderCellDef>Total Active </mat-header-cell>
-              <mat-cell *matCellDef="let row" class="blueText" data-label="Active"> {{row.active}}
-
-              </mat-cell>
-            </ng-container>
+        <!-- Death  Column -->
+        <ng-container matColumnDef="Deaths">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Total Death </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Deaths">
+            <span class="small ashText">+{{row.deltadeaths}}</span>&nbsp;
+            {{row.deaths}}
+          </mat-cell>
+        </ng-container>
 
 
-            <!-- Disclaimer column -->
-  <ng-container matColumnDef="disclaimer">
-      <mat-footer-cell *matFooterCellDef colspan="2">
-        The data has been sourced from various entities such as  <a href="https://www.covid19india.org/" target="_blank">&nbsp; Covid19India &nbsp;</a> API, we are not responsbile for accuracy
-      </mat-footer-cell>
-    </ng-container>
+        <!-- Active  Column -->
+        <ng-container matColumnDef="Active">
+          <mat-header-cell *matHeaderCellDef>Total Active </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="blueText" data-label="Active"> {{row.active}}
+
+          </mat-cell>
+        </ng-container>
+
+
+        <!-- Disclaimer column -->
+        <ng-container matColumnDef="disclaimer">
+          <mat-footer-cell *matFooterCellDef colspan="2">
+            The data has been sourced from various entities such as <a href="https://www.covid19india.org/"
+              target="_blank">&nbsp; Covid19India &nbsp;</a> API, we are not responsbile for accuracy
+          </mat-footer-cell>
+        </ng-container>
 
 
 
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
-            <mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row" ></mat-footer-row>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></mat-footer-row>
 
-          </mat-table>
-        </div>
+      </mat-table>
+    </div>
 
-      </div>
+  </div>
 
 
 
@@ -185,5 +199,5 @@
 
 <!--If page is Loading show the below content-->
 <div class="loading card" *ngIf="loading">
-     We are gathering data for you... Please hold on
+  We are gathering data for you... Please hold on
 </div>
