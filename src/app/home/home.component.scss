@@ -1,1 +1,9 @@
 /*SCSS related to home component has been moved to style.scss to avoid duplicacy.*/
+
+mat-cell {
+    cursor: pointer !important;
+}
+
+.tealText {
+color: teal;
+}

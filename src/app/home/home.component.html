@@ -12,12 +12,13 @@ The content of the table is center aligned due to the class added to appcomponen
 
 
 
-<div class="redText">
+<div class="tealText">
   <br><br><br>
   &nbsp; COVID-19 INDIA TRACKER : <span *ngIf="country">{{country.lastupdatedtime}}</span>
   <span class="blinking">
     Lets break the chain ! <strong>Stay Indoors Stay Safe</strong>
   </span>
+  Country Wide Lockdown till May 3 2020. 
 </div>
 
 <hr>
@@ -108,13 +109,6 @@ The content of the table is center aligned due to the class added to appcomponen
     </div> -->
 
 
-
-
-  <div class="blinking redText">
-    Click on each state name to redirect to the corresponding state page.
-    <br>
-  </div>
-
   <!--Table Starts here -->
 
   <div class="example-container ">
@@ -136,7 +130,7 @@ The content of the table is center aligned due to the class added to appcomponen
         <!-- Recovered  Column -->
         <ng-container matColumnDef="Recovered">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Total Recovered </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="Recovered">
+          <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row" data-label="Recovered">
             <span class="small greenText">+{{row.deltarecovered}}</span>&nbsp;
             {{row.recovered}}
           </mat-cell>
@@ -145,7 +139,7 @@ The content of the table is center aligned due to the class added to appcomponen
         <!-- Confirmed  Column -->
         <ng-container matColumnDef="Confirmed">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Total Confirmed </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="Confirmed">
+          <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row" data-label="Confirmed">
             <span class="small redText">+{{row.deltaconfirmed}}</span>&nbsp;
             {{row.confirmed}}
           </mat-cell>
@@ -154,7 +148,7 @@ The content of the table is center aligned due to the class added to appcomponen
         <!-- Death  Column -->
         <ng-container matColumnDef="Deaths">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Total Death </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="Deaths">
+          <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row" data-label="Deaths">
             <span class="small ashText">+{{row.deltadeaths}}</span>&nbsp;
             {{row.deaths}}
           </mat-cell>
@@ -164,7 +158,7 @@ The content of the table is center aligned due to the class added to appcomponen
         <!-- Active  Column -->
         <ng-container matColumnDef="Active">
           <mat-header-cell *matHeaderCellDef>Total Active </mat-header-cell>
-          <mat-cell *matCellDef="let row" class="blueText" data-label="Active"> {{row.active}}
+          <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row" class="blueText" data-label="Active"> {{row.active}}
 
           </mat-cell>
         </ng-container>
