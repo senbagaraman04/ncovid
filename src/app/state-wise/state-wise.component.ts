@@ -15,7 +15,7 @@ export class StateWiseComponent implements OnInit {
   districtData: DistrictData;
   displayedColumns: string[] = ['District','Recovered','Confirmed','Deaths','Active'];
   data: any;
-  
+  noActualCase: boolean = false;
   constructor(private httpService:HttpService,private router:Router) { }
 
   rowData: any;
@@ -26,22 +26,33 @@ export class StateWiseComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-    console.log(this.rowData);
-    this.subscription = timer(0, 100000).pipe(switchMap(() => this.httpService.getStateData())).subscribe(response => 
-      {
-          response.forEach(element => {
-           // console.log(element.statecode);
-            if(element.statecode == this.rowData.statecode){
-              this.districtData = element.districtData.splice(1);
-              this.data = this.districtData;
-               this.tabledataFillup(this.districtData);
-            }
-          });
-      });   
+
+    if(this.rowData.active == 0 && this.rowData.confirmed == 0)
+    {
+          this.noActualCase = true;
+    }
+    else
+    {
+      //The state may have/had active cases.
+      this.subscription = timer(0, 100000).pipe(switchMap(() => this.httpService.getStateData())).subscribe(response => 
+        {
+            response.forEach(element => {
+              if(element.statecode == this.rowData.statecode){
+                this.districtData = element.districtData.splice(1);
+                this.data = this.districtData;
+                 this.tabledataFillup(this.districtData);
+              }
+            });
+        }); 
+    }
+     
   }
+
+  
+  /**Data to fill up the Table */
   tabledataFillup(districtData: DistrictData) {
-console.log(districtData)
- this.data = districtData;
+       this.data = districtData;
+
   }
 
 }

@@ -21,10 +21,11 @@ The content of the table is center aligned due to the class added to appcomponen
 </div>
 
 <!--/State Name-->
+<div *ngIf="!noActualCase">
 
 <!-- Patient Count Cards-->
 
-<div class="modal-body row">
+<div class="modal-body row" >
 
     <!-- Card One -->
 
@@ -99,14 +100,13 @@ The content of the table is center aligned due to the class added to appcomponen
                 </div>
             </div>
 
-    <br>
 </div>
 
 <!--/Patient Count Cards-->
 
 <!--District Wise Row comes here-->
 
-<div class="modal-row">
+<div class="modal-row" >
         <div class="example-container">
 
                 <div class="col-md-12">
@@ -169,12 +169,28 @@ The content of the table is center aligned due to the class added to appcomponen
 
 <!--/District Wise Row comes here-->
 
+</div>
+
+<!-- COde to Display No actual Cases in the state recorded-->
+
+<div class="modal-row" *ngIf="noActualCase">
+
+<div class="col-md-11">
+        <div class="card-panel teal">
+                <mat-card class="recovered-card greenText">
+                        <mat-card-header>
+                            <mat-card-title>No Positive Cases</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                        <span> No Active Cases recorded Till date. Keep the Good work up !!</span>
+            
+                        </mat-card-content>
+                    </mat-card>
+        </div>
+</div>
 
 
-
-<!-- State Map goes here -->
-
+</div>
 
 
-
-<!--/State map goes here-->
+<!-- COde to Display No actual Cases in the state recorded-->
