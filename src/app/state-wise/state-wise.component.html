@@ -15,92 +15,78 @@
 
 <div class="modal-body row">
 
-    <!--Recovered Card-->
-    <div class="col-md-2">
-        <mat-card class="recovered-card greenText">
-            <mat-card-header>
-                <mat-card-title>
-                 Recovered</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    <small>
-                        +{{rowData.deltarecovered}}
-                    </small> {{rowData.recovered}}
-                </p>
+    <!-- Card One -->
 
-            </mat-card-content>
-        </mat-card>
+    <div class="col-md-3">
+            <div class="card-panel teal">
+                    <mat-card class="recovered-card greenText">
+                            <mat-card-header>
+                                <mat-card-title>Recovered</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>
+                                    <small> +{{rowData.deltarecovered}}</small> 
+                                    {{rowData.recovered}}
+                                </p>
+                
+                            </mat-card-content>
+                        </mat-card>
+            </div>
+        </div>
 
-    </div>
-    <br>
-
-
-    <!--Confirmed-->
-    <div class="col-md-2">
-        <mat-card class="confirmed-card redText">
-            <mat-card-header>
-                <mat-card-title>
-                  
-                    Confirmed</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    <small>
-                        +{{rowData.deltaconfirmed}}
-                    </small> {{rowData.confirmed}}
-                </p>
-
-            </mat-card-content>
-        </mat-card>
-    </div>
-    <br>
+    <!-- Card Two-->
+    <div class="col-md-3">
+            <div class="card-panel teal">
+                    <mat-card class="confirmed-card redText">
+                            <mat-card-header>
+                                <mat-card-title>Confirmed</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>
+                                    <small>+{{rowData.deltaconfirmed}} </small>
+                                     {{rowData.confirmed}}
+                                </p>
+                
+                            </mat-card-content>
+                        </mat-card>
+            </div>
+        </div>
 
 
-    <!--Died Card-->
-    <div class="col-md-2 ashText">
-        <mat-card class="died-card ashText">
-            <mat-card-header>
-                <mat-card-title>
-                   Deaths</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    <small>
-                        +{{rowData.deltadeaths}}
-                    </small> {{rowData.deaths}}
-                </p>
-
-            </mat-card-content>
-        </mat-card>
-    </div>
-    <br>
-
-
-    <!--Active Card-->
-    <div class="col-md-2">
-        <mat-card class="active-card blueText">
-            <mat-card-header>
-
-                <mat-card-title>
-                 Active
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <span>{{rowData.active}}</span>
-            </mat-card-content>
-        </mat-card>
-
-
-
-       
-    </div>
-    <!-- FAQ CARD-->
-    <div class="col-md-2">
-        <strong>Do you feel the symptoms related to Covid ?</strong>
-        <p>  Call <strong>1075 !!</strong>. They are ready to help.</p>
-      </div>
-
+        <!-- Card Three -->
+    <div class="col-md-3">
+            <div class="card-panel teal">
+                    <mat-card class="died-card ashText">
+                            <mat-card-header>
+                                <mat-card-title>
+                                   Deaths</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>
+                                    <small>
+                                        +{{rowData.deltadeaths}}
+                                    </small> {{rowData.deaths}}
+                                </p>
+                
+                            </mat-card-content>
+                        </mat-card>
+            </div>
+        </div>
+   
+  <!-- Card Four -->
+        <div class="col-md-3">
+                <div class="card-panel teal">
+                        <mat-card class="active-card blueText">
+                                <mat-card-header>                    
+                                    <mat-card-title> Active </mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <span>{{rowData.active}}</span>
+                                </mat-card-content>
+                            </mat-card>
+                    
+                </div>
+            </div>
 
     <br>
 </div>
