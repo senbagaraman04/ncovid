@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class StateWiseComponent implements OnInit {
   subscription: Subscription;
   districtData: DistrictData;
-  displayedColumns: string[] = ['District','Recovered','Confirmed','Deaths','Active'];
+  displayedColumns: string[] = ['District','Recovered','Confirmed','Deaths','Active','Percentage'];
   data: any;
   noActualCase: boolean = false;
   constructor(private httpService:HttpService,private router:Router) { }
@@ -48,7 +48,7 @@ export class StateWiseComponent implements OnInit {
      
   }
 
-  
+
   /**Data to fill up the Table */
   tabledataFillup(districtData: DistrictData) {
        this.data = districtData;

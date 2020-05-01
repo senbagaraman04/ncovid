@@ -150,6 +150,18 @@ The content of the table is center aligned due to the class added to appcomponen
                                 <mat-cell  data-label="Deaths"  *matCellDef="let row"> <span class="small ashText">+ {{row.delta.deceased}} </span> &nbsp; {{row.deceased}}</mat-cell>
                               </ng-container>
 
+                              
+                                <!--  Percentage Column  -->
+                           <ng-container matColumnDef="Percentage">
+                                <mat-header-cell *matHeaderCellDef> Percentage </mat-header-cell>
+                                <mat-cell  data-label="Percentage"  *matCellDef="let row"> 
+                                 <p>{{(row.confirmed/rowData.confirmed) * 100 | number}} %</p>
+
+                                </mat-cell>
+                              </ng-container>
+
+
+
                   <!-- Disclaimer column -->
   <ng-container matColumnDef="disclaimer">
         <mat-footer-cell *matFooterCellDef colspan="2">
