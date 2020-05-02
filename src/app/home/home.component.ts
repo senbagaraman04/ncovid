@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Chart } from 'chart.js';  
+import { red } from 'color-name';
 
 
 @Component({
@@ -47,27 +48,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.data = new MatTableDataSource(this.states);
         this.loading = false;
     
-      });    
-this.loadChartsData();
-  }
-  /**To load the data into Graphs */
-  loadChartsData() {
-    this.httpService.getfullData().subscribe(response => {
-      this.timeSeriesStates = response.cases_time_series;
-      this.loadSecondData();
-    });
-   
+      });  
 
-  }
-  loadSecondData(){
+      this.httpService.getfullData().subscribe(response => {
+        this.timeSeriesStates = response.cases_time_series;
+        this.loadGraphData();
+      });
+    
+    
+    }
+  /**To load the data into Graphs */
+  
+  loadGraphData() : void {
     console.log(this.timeSeriesStates)
      this.timeSeriesStates.forEach(res => {
        this.dailyConfirmedCases.push(res.dailyconfirmed);
+       this.dailyRecoveredCases.push(res.dailyrecovered);
        this.dateData.push(res.date);
        
      });
      console.log(this.dailyConfirmedCases)
-     this.Linechart = new Chart('canvas', {  
+     this.Linechart = new Chart('trends', {  
       type: 'bar',  
       data: {  
         labels: this.dateData,  
@@ -75,13 +76,20 @@ this.loadChartsData();
           {  
             data: this.dailyConfirmedCases,  
             borderColor: '#3cb371',  
-            backgroundColor: "#0000FF",  
-          }  
+            backgroundColor: "red",
+            label: 'Confirmed'
+          },
+         {
+          data: this.dailyRecoveredCases,  
+          label: 'Recovered',
+          backgroundColor: "#0000FF", 
+         },     
+               
         ]  
       },  
       options: {  
         legend: {  
-          display: true  
+          display: true,
         },  
         scales: {  
           xAxes: [{  
