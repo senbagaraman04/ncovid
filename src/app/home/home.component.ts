@@ -8,6 +8,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { Chart } from 'chart.js';  
 
 
 @Component({
@@ -27,21 +28,71 @@ export class HomeComponent implements OnInit, AfterViewInit {
   data = new MatTableDataSource(null);
   searchText;
   loading : boolean = true;
+  dailyConfirmedCases = [];
+  dailyDeceasedCases = [];
+  dailyRecoveredCases = [];
+  Linechart: any;
+  dateData = [];
   constructor(private httpService:HttpService,private router:Router) { }
 
 
   ngOnInit(): void {
 
     console.log(this.loading)
+
     this.subscription = timer(0, 10000).pipe(switchMap(() => this.httpService.getfullData())).subscribe(response => 
       {
         this.country = response.statewise[0];
-        this.timeSeriesStates = response.cases_time_series;
         this.states =response.statewise.slice(1);
         this.data = new MatTableDataSource(this.states);
         this.loading = false;
+    
       });    
+this.loadChartsData();
+  }
+  /**To load the data into Graphs */
+  loadChartsData() {
+    this.httpService.getfullData().subscribe(response => {
+      this.timeSeriesStates = response.cases_time_series;
+      this.loadSecondData();
+    });
+   
 
+  }
+  loadSecondData(){
+    console.log(this.timeSeriesStates)
+     this.timeSeriesStates.forEach(res => {
+       this.dailyConfirmedCases.push(res.dailyconfirmed);
+       this.dateData.push(res.date);
+       
+     });
+     console.log(this.dailyConfirmedCases)
+     this.Linechart = new Chart('canvas', {  
+      type: 'bar',  
+      data: {  
+        labels: this.dateData,  
+        datasets: [  
+          {  
+            data: this.dailyConfirmedCases,  
+            borderColor: '#3cb371',  
+            backgroundColor: "#0000FF",  
+          }  
+        ]  
+      },  
+      options: {  
+        legend: {  
+          display: true  
+        },  
+        scales: {  
+          xAxes: [{  
+            display: true  
+          }],  
+          yAxes: [{  
+            display: true  
+          }],  
+        }  
+      }  
+    });  
   }
 
 
