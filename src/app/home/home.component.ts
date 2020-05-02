@@ -32,7 +32,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   dailyConfirmedCases = [];
   dailyDeceasedCases = [];
   dailyRecoveredCases = [];
-  Linechart: any;
+  linechartConfirmed: any;
+  linechartRecovered: any;
+  linechartDeceased: any;
   dateData = [];
   constructor(private httpService:HttpService,private router:Router) { }
 
@@ -64,11 +66,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
      this.timeSeriesStates.forEach(res => {
        this.dailyConfirmedCases.push(res.dailyconfirmed);
        this.dailyRecoveredCases.push(res.dailyrecovered);
+       this.dailyDeceasedCases.push(res.dailydeceased);
        this.dateData.push(res.date);
        
      });
      console.log(this.dailyConfirmedCases)
-     this.Linechart = new Chart('trends', {  
+     this.linechartConfirmed = new Chart('confirmed', {  
       type: 'bar',  
       data: {  
         labels: this.dateData,  
@@ -78,13 +81,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
             borderColor: '#3cb371',  
             backgroundColor: "red",
             label: 'Confirmed'
-          },
-         {
-          data: this.dailyRecoveredCases,  
-          label: 'Recovered',
-          backgroundColor: "#0000FF", 
-         },     
-               
+          }               
         ]  
       },  
       options: {  
@@ -101,6 +98,62 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }  
       }  
     });  
+
+
+    this.linechartRecovered = new Chart('recovered', {  
+      type: 'bar',  
+      data: {  
+        labels: this.dateData,  
+        datasets: [  
+         {
+          data: this.dailyRecoveredCases,  
+          label: 'Recovered',
+          backgroundColor: "green", 
+         }              
+        ]  
+      },  
+      options: {  
+        legend: {  
+          display: true,
+        },  
+        scales: {  
+          xAxes: [{  
+            display: true  
+          }],  
+          yAxes: [{  
+            display: true  
+          }],  
+        }  
+      }  
+    });
+    
+    
+    this.linechartDeceased = new Chart('deceased', {  
+      type: 'bar',  
+      data: {  
+        labels: this.dateData,  
+        datasets: [  
+         {
+          data: this.dailyDeceasedCases,  
+          label: 'Deceased',
+          backgroundColor: "#0000FF", 
+         }              
+        ]  
+      },  
+      options: {  
+        legend: {  
+          display: true,
+        },  
+        scales: {  
+          xAxes: [{  
+            display: true  
+          }],  
+          yAxes: [{  
+            display: true  
+          }],  
+        }  
+      }  
+    }); 
   }
 
 
