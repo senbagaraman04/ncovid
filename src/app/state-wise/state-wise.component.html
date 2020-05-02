@@ -16,6 +16,10 @@ The content of the table is center aligned due to the class added to appcomponen
 
     <div class="col-md-4">
         <strong> {{rowData.state}}</strong>
+        <div class="search-hero" *ngIf="!noActualCase">
+                <input class="form-control" type="text" 
+                        name="search" (keyup)="applyFilter($event)" placeholder="Search Here" autocomplete="on" >
+              </div>
         <div class="mobileHome">
                 <button class="mdc-fab" aria-label="Home">
                         <div class="mdc-fab__ripple"></div>
@@ -26,7 +30,10 @@ The content of the table is center aligned due to the class added to appcomponen
    
 </div>
 
-
+<div class="row">
+        <div class="col-md-5">
+           
+        </div>
 
 
 
@@ -34,6 +41,8 @@ The content of the table is center aligned due to the class added to appcomponen
 
 
 <!--/State Name-->
+
+
 <div *ngIf="!noActualCase">
 
 <!-- Patient Count Cards-->

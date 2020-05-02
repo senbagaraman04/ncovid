@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import {  AfterViewInit} from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 
@@ -23,10 +24,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   subscription: Subscription;
   statusText: string;
   displayedColumns: string[] = ['State','Recovered','Confirmed','Deaths','Active'];
-  data = this.states;
-
+  data = new MatTableDataSource(null);
+  searchText;
   loading : boolean = true;
-
   constructor(private httpService:HttpService,private router:Router) { }
 
 
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.country = response.statewise[0];
         this.timeSeriesStates = response.cases_time_series;
         this.states =response.statewise.slice(1);
-        this.data = this.states;
+        this.data = new MatTableDataSource(this.states);
         this.loading = false;
       });    
 
@@ -48,16 +48,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
  
 
 
-  ngAfterViewInit() {
-   this.data = this.states;
+  ngAfterViewInit(): void {
+   this.data = new MatTableDataSource(this.states);
+
   }
 
 
-  rowRedirect(row, Event: MatTabChangeEvent) {
+  rowRedirect(row, Event: Event) : void {
     sessionStorage.setItem("rowData", JSON.stringify(row));
     this.router.navigate(['/state-wise/stateWise']);
   }
 
+
+  applyFilter(event: Event) : void {
+  console.log((event.target as HTMLInputElement).value);
+ this.data.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  }
 
 
 }

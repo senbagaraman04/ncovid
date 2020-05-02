@@ -4,6 +4,7 @@ import { HttpService } from '../services/http.service';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-state-wise',
@@ -12,9 +13,9 @@ import { Router } from '@angular/router';
 })
 export class StateWiseComponent implements OnInit {
   subscription: Subscription;
-  districtData: DistrictData;
+  districtData: any;
   displayedColumns: string[] = ['District','Recovered','Confirmed','Deaths','Active','Percentage'];
-  data: any;
+  data= new MatTableDataSource(null);
   noActualCase: boolean = false;
   constructor(private httpService:HttpService,private router:Router) { }
 
@@ -39,7 +40,7 @@ export class StateWiseComponent implements OnInit {
             response.forEach(element => {
               if(element.statecode == this.rowData.statecode){
                 this.districtData = element.districtData.splice(1);
-                this.data = this.districtData;
+                this.data = new MatTableDataSource(this.districtData) ;
                  this.tabledataFillup(this.districtData);
               }
             });
@@ -50,9 +51,15 @@ export class StateWiseComponent implements OnInit {
 
 
   /**Data to fill up the Table */
-  tabledataFillup(districtData: DistrictData) {
-       this.data = districtData;
+  tabledataFillup(districtData: any) {
+       this.data = new MatTableDataSource(districtData);
 
   }
 
+  /**Search for the text in table */
+ 
+  applyFilter(event: Event) : void {
+    console.log((event.target as HTMLInputElement).value);
+   this.data.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    }
 }

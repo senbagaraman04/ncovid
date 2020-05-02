@@ -45,6 +45,7 @@ The content of the table is center aligned due to the class added to appcomponen
         </mat-card>
       </div>
     </div>
+
     <!-- Card Two  -->
     <div class="col-md-3">
       <div class="card-panel teal">
@@ -63,6 +64,7 @@ The content of the table is center aligned due to the class added to appcomponen
         </mat-card>
       </div>
     </div>
+
     <!-- Card Three  -->
     <div class="col-md-3">
       <div class="card-panel teal">
@@ -99,9 +101,24 @@ The content of the table is center aligned due to the class added to appcomponen
   </div>
 
 
+<div class="row">
+  <div class="col-md-5">
+      <div class="search-hero">
+          <input class="form-control" type="text" 
+                  name="search" (keyup)="applyFilter($event)" placeholder="Search Here" autocomplete="off" >
+        </div>
+  </div>
+
+ 
+</div>
 
 
-  <br>
+
+
+
+
+
+ 
   <!-- <div class="col-md-4">
       <strong>Where did the Data come from ?</strong>
       <p> The data has been injected from <a href="https://www.covid19india.org/" target="_blank">Covid19India</a> API.</p>

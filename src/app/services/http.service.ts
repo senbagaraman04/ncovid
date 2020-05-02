@@ -14,7 +14,7 @@ export class HttpService {
 
   getfullData(): Observable<CovidData> {
 
-    return this.http.get<CovidData>("https://api.covid19india.org/data.json").pipe(
+    return this.http.get<any>("https://api.covid19india.org/data.json").pipe(
       retry(2)
     );
 
