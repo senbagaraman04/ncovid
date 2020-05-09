@@ -60,6 +60,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   
   
   @media screen and (max-width: 960px) {
+
+    /**Added to hide the charts in mobile view **/
+    .chart-wrapper {
+               display: none;
+    }
     .mat-table {
       border: 0;
       vertical-align: middle
