@@ -14,7 +14,7 @@ The content of the table is center aligned due to the class added to appcomponen
 <!-- State Name-->
 <div class="modal-body row" *ngIf="rowData">
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <strong> {{rowData.state}}</strong>
         <div class="search-hero" *ngIf="!noActualCase">
                 <input class="form-control" type="text" 
@@ -212,15 +212,16 @@ The content of the table is center aligned due to the class added to appcomponen
 
 <div class="modal-row" *ngIf="noActualCase">
 
-<div class="col-md-11">
+<div class="col-md-12">
         <div class="card-panel teal">
                 <mat-card class="recovered-card greenText">
                         <mat-card-header>
-                            <mat-card-title>No Positive Cases</mat-card-title>
+                            <mat-card-title *ngIf="!noActiveCase">No Positive Cases</mat-card-title>
+                            <mat-card-title *ngIf="noActiveCase">No Active Cases</mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
-                        <span> No Active Cases recorded till date. Keep the Good work up !!</span>
-            
+                        <span *ngIf="!noActiveCase"> No Active Cases recorded till date. <br>Keep the Good work up !!</span>
+                        <span *ngIf="noActiveCase"> No Active Cases. All patients recovered.</span>
                         </mat-card-content>
                     </mat-card>
         </div>

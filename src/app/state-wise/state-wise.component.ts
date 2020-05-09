@@ -17,6 +17,7 @@ export class StateWiseComponent implements OnInit {
   displayedColumns: string[] = ['District','Recovered','Confirmed','Deaths','Active','Percentage'];
   data= new MatTableDataSource(null);
   noActualCase: boolean = false;
+  noActiveCase: boolean = false;
   constructor(private httpService:HttpService,private router:Router) { }
 
   rowData: any;
@@ -31,6 +32,11 @@ export class StateWiseComponent implements OnInit {
     if(this.rowData.active == 0 && this.rowData.confirmed == 0)
     {
           this.noActualCase = true;
+    }
+    else if(this.rowData.recovered == this.rowData.confirmed)
+    {
+      this.noActualCase = true;
+      this.noActiveCase = true;
     }
     else
     {
