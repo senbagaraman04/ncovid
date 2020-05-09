@@ -101,6 +101,7 @@ The content of the table is center aligned due to the class added to appcomponen
   </div>
 
 
+
 <div class="row">
   <div class="col-md-5">
       <div class="search-hero">
@@ -215,8 +216,10 @@ The content of the table is center aligned due to the class added to appcomponen
           
 </div>
 
-<!--Chart Goes here-->
-<div class="chart-wrapper" >
+
+
+  <!--Graph starts here -->
+  <ng-container class="chart-wrapper" >
     <div class="row" style="padding-top: 28px;margin-left:40%;">  
         <span class="tealText">
          nCovid Trends in India
@@ -225,25 +228,13 @@ The content of the table is center aligned due to the class added to appcomponen
         <div class="row">
             <div class="chart-container" style="position: relative;margin-left:0px;height:50vh; width:50vw ">    
             
-                <canvas id="confirmed">{{ linechartConfirmed }}</canvas> 
+                <canvas id="covidCharts">{{ linechartConfirmed }}</canvas> 
                       </div>
         </div>
-         <div class="row">
-            <div class="chart-container" style="position: relative;margin-left:0px; height:50vh; width:50vw">    
-                    
-                <canvas id="recovered">{{ linechartRecovered }}</canvas>   
-              </div>
-        </div>
-        <div class="row">
-            <div class="chart-container" style="position: relative;margin-left:0px; height:50vh; width:50vw">    
-                    
-                <canvas id="deceased">{{ linechartDeceased }}</canvas>   
-              </div>   
-        
-        </div> 
-</div>
+      
+</ng-container >
 
-
+<!--Graph ends here -->
 
 
 

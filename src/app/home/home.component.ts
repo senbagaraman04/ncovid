@@ -42,6 +42,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
     console.log(this.loading)
+    this.httpService.getfullData().subscribe(response => {
+      this.timeSeriesStates = response.cases_time_series;
+      this.loadGraphData();
+    });
 
     this.subscription = timer(0, 10000).pipe(switchMap(() => this.httpService.getfullData())).subscribe(response => 
       {
@@ -50,17 +54,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.data = new MatTableDataSource(this.states);
         this.loading = false;
     
-      });  
-
-      this.httpService.getfullData().subscribe(response => {
-        this.timeSeriesStates = response.cases_time_series;
-        this.loadGraphData();
-      });
-    
+      });    
     
     }
-  /**To load the data into Graphs */
-  
+
+
+  /**To load the data into Graphs */  
   loadGraphData() : void {
     console.log(this.timeSeriesStates)
      this.timeSeriesStates.forEach(res => {
@@ -71,17 +70,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
        
      });
      console.log(this.dailyConfirmedCases)
-     this.linechartConfirmed = new Chart('confirmed', {  
-      type: 'bar',  
+     this.linechartConfirmed = new Chart('covidCharts', {  
+      type: 'line',  
       data: {  
         labels: this.dateData,  
         datasets: [  
           {  
             data: this.dailyConfirmedCases,  
-            borderColor: '#3cb371',  
-            backgroundColor: "red",
-            label: 'Confirmed'
-          }               
+            label: 'Confirmed',
+            borderColor: "red"
+          },
+          {
+            data: this.dailyRecoveredCases,  
+            label: 'Recovered',
+           borderColor: "green"
+           },
+           {
+            data: this.dailyDeceasedCases,  
+            label: 'Deceased',
+            borderColor: "#0000FF"
+           }     
         ]  
       },  
       options: {  
@@ -99,61 +107,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }  
     });  
 
-
-    this.linechartRecovered = new Chart('recovered', {  
-      type: 'bar',  
-      data: {  
-        labels: this.dateData,  
-        datasets: [  
-         {
-          data: this.dailyRecoveredCases,  
-          label: 'Recovered',
-          backgroundColor: "green", 
-         }              
-        ]  
-      },  
-      options: {  
-        legend: {  
-          display: true,
-        },  
-        scales: {  
-          xAxes: [{  
-            display: true  
-          }],  
-          yAxes: [{  
-            display: true  
-          }],  
-        }  
-      }  
-    });
-    
-    
-    this.linechartDeceased = new Chart('deceased', {  
-      type: 'bar',  
-      data: {  
-        labels: this.dateData,  
-        datasets: [  
-         {
-          data: this.dailyDeceasedCases,  
-          label: 'Deceased',
-          backgroundColor: "#0000FF", 
-         }              
-        ]  
-      },  
-      options: {  
-        legend: {  
-          display: true,
-        },  
-        scales: {  
-          xAxes: [{  
-            display: true  
-          }],  
-          yAxes: [{  
-            display: true  
-          }],  
-        }  
-      }  
-    }); 
   }
 
 
