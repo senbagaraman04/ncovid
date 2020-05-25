@@ -126,8 +126,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   applyFilter(event: Event) : void {
-  console.log((event.target as HTMLInputElement).value);
- this.data.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+      this.data.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
   }
 
 

@@ -65,7 +65,7 @@ export class StateWiseComponent implements OnInit {
   /**Search for the text in table */
  
   applyFilter(event: Event) : void {
-    console.log((event.target as HTMLInputElement).value);
-   this.data.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    
+         this.data.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
     }
 }
