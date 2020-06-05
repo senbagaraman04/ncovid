@@ -61,7 +61,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   /**To load the data into Graphs */  
   loadGraphData() : void {
-    console.log(this.timeSeriesStates)
      this.timeSeriesStates.forEach(res => {
        this.dailyConfirmedCases.push(res.dailyconfirmed);
        this.dailyRecoveredCases.push(res.dailyrecovered);
@@ -69,7 +68,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
        this.dateData.push(res.date);
        
      });
-     console.log(this.dailyConfirmedCases)
      this.linechartConfirmed = new Chart('covidCharts', {  
       type: 'line',  
       data: {  
