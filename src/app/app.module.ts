@@ -14,12 +14,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import { StateWiseComponent } from './state-wise/state-wise.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    StateWiseComponent
+    StateWiseComponent,
+    ArchiveComponent
   ],
   imports: [
     DemoMaterialModule,

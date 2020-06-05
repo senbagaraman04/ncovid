@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Statewise, CasesTimeSeries} from '../services/covidinterface.service';
 import { Subscription, timer } from 'rxjs';
@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Chart } from 'chart.js';  
-import { red } from 'color-name';
-
 
 @Component({
   selector: 'app-home',
@@ -36,21 +34,29 @@ export class HomeComponent implements OnInit, AfterViewInit {
   linechartRecovered: any;
   linechartDeceased: any;
   dateData = [];
-  constructor(private httpService:HttpService,private router:Router) { }
+  minDate: Date;
+  maxDate: Date;
+  public from;
+  m: any;
 
+
+  constructor(private httpService:HttpService,private router:Router) { }
 
   ngOnInit(): void {
 
-    console.log(this.loading)
+    console.log(this.loading);
+
     this.httpService.getfullData().subscribe(response => {
       this.timeSeriesStates = response.cases_time_series;
       this.loadGraphData();
-    });
+    }); 
+  
 
-    this.subscription = timer(0, 10000).pipe(switchMap(() => this.httpService.getfullData())).subscribe(response => 
+    this.subscription = timer(0, 1000000).pipe(switchMap(() => this.httpService.getfullData())).subscribe(response => 
       {
         this.country = response.statewise[0];
         this.states =response.statewise.slice(1);
+        console.log( this.states )
         this.data = new MatTableDataSource(this.states);
         this.loading = false;
     
@@ -61,6 +67,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   /**To load the data into Graphs */  
   loadGraphData() : void {
+    console.log(this.from);
+
      this.timeSeriesStates.forEach(res => {
        this.dailyConfirmedCases.push(res.dailyconfirmed);
        this.dailyRecoveredCases.push(res.dailyrecovered);
@@ -125,8 +133,43 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   applyFilter(event: Event) : void {
       this.data.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+
   }
 
+
+
+  onSubmitButtonClick() : void {
+    if(this.from != undefined)
+    {
+      this.httpService.getFullDataonDate(this.from).subscribe(particularResponse => {
+        console.log(particularResponse)
+        let t = [];
+        t.push(particularResponse);
+        console.log(t);
+      this.test(particularResponse);
+       console.log(Object.values(particularResponse))
+
+      });
+    }
+
+  }
+
+
+  test(datas) {
+
+this.m = datas;
+
+Object.keys(datas).forEach(function (key){
+  console.log("*****")
+  console.log(datas[key]);
+  console.log("*****")
+});
+
+Object.keys(datas).forEach(x=>{console.log(x)});
+
+
+
+  }
 
 }
 
