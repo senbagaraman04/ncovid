@@ -28,4 +28,11 @@ export class HttpService {
   }
 
 
+  getFullDataonDate(selectedDate) : Observable<any> {
+    return this.http.get<any>("https://api.covid19india.org/v3/min/data-"+selectedDate+".min.json").pipe(
+      retry(2)
+    )
+  }
+
+
 }
