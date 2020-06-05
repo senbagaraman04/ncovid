@@ -247,9 +247,31 @@
 <ng-container *ngIf="!showTable">
 
 
-     <div>
-       Table hidden WIP
-     </div>
+     <ng-container class="row" *ngFor="let name of stateNames">
+     
+
+
+     <div class="card" style="width:30%">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="../../assets/states/{{name}}.jpg">
+        </div>
+        <div class="card-content" (click)="clickedtoOpen()">
+          <span class="card-title activator grey-text text-darken-4">{{name}}<i class="material-icons right">more_vert</i></span>
+        </div>
+        <div class="card-reveal" >
+          <span class="card-title grey-text text-darken-4">{{name}}<i class="material-icons right">close</i></span>
+          <p>Date: {{from}}</p>
+          <p>Recovered:</p>
+          <p>Confirmed:</p>
+          <p>Deceased:</p>
+          <p>Tested:</p>
+        </div>
+      </div>
+
+
+    </ng-container>
+
+
     
   </ng-container>
 

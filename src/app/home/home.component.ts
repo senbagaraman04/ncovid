@@ -38,9 +38,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   maxDate: Date;
   public from;
   m: any;
-  showTable: boolean = true;
-
-
+  showTable: boolean = false;
+  stateNames= [];
+  stateCodes = [];
+  stateStatus = [];
   constructor(private httpService:HttpService,private router:Router) { }
 
   ngOnInit(): void {
@@ -140,6 +141,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   onSubmitButtonClick() : void {
+
+    this.stateNames = ["TamilNadu", "Kerala"];
     if(this.from != undefined)
     {
       this.showTable = false;
@@ -153,19 +156,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   processNewData(datas) {
-
-    this.m = datas;
-
     Object.keys(datas).forEach(function (key) {
       console.log("*****")
+      console.log(key);
       console.log(datas[key]);
       console.log("*****")
     });
+    Object.values(datas).forEach(x => { console.log(x) });
+  }
 
-    Object.keys(datas).forEach(x => { console.log(x) });
 
-
-
+  clickedtoOpen() {
+    console.log("Card Opened");
   }
 
 }
