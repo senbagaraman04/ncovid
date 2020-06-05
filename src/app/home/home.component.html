@@ -125,7 +125,7 @@
 
   <!--Table Starts here -->
 
-  <div class="example-container">
+  <div class="example-container"  *ngIf="showTable">
 
     <div class="col-md-12">
 
@@ -198,8 +198,7 @@
   </div>
 
 
- 
-  
+
 
 </div>
 
@@ -216,7 +215,7 @@
 
 
   <!--Graph starts here -->
-<ng-container class="chart-wrapper" >
+<ng-container class="chart-wrapper" *ngIf="showTable">
     <div class="row" style="padding-top: 28px;margin-left:40%;">  
         <span class="tealText">
          nCovid Trends in India
@@ -232,6 +231,20 @@
 </ng-container >
 
 <!--Graph ends here -->
+
+
+
+
+<!-- Archived Data Loads Here-->
+ 
+<ng-container *ngIf="!showTable">
+
+
+     <div>
+       Table hidden WIP
+     </div>
+    
+  </ng-container>
 
 
 

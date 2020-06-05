@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   maxDate: Date;
   public from;
   m: any;
+  showTable: boolean = true;
 
 
   constructor(private httpService:HttpService,private router:Router) { }
@@ -141,31 +142,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
   onSubmitButtonClick() : void {
     if(this.from != undefined)
     {
+      this.showTable = false;
       this.httpService.getFullDataonDate(this.from).subscribe(particularResponse => {
-        console.log(particularResponse)
-        let t = [];
-        t.push(particularResponse);
-        console.log(t);
-      this.test(particularResponse);
-       console.log(Object.values(particularResponse))
-
+         this.processNewData(particularResponse);
+       console.log(Object.values(particularResponse));
       });
     }
 
   }
 
 
-  test(datas) {
+  processNewData(datas) {
 
-this.m = datas;
+    this.m = datas;
 
-Object.keys(datas).forEach(function (key){
-  console.log("*****")
-  console.log(datas[key]);
-  console.log("*****")
-});
+    Object.keys(datas).forEach(function (key) {
+      console.log("*****")
+      console.log(datas[key]);
+      console.log("*****")
+    });
 
-Object.keys(datas).forEach(x=>{console.log(x)});
+    Object.keys(datas).forEach(x => { console.log(x) });
 
 
 
