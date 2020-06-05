@@ -102,22 +102,29 @@
   <!--Search Bar Calendar and Submit Button-->
 <div class="row col-md-12">
     
-
-        <div class="col-md-4">
-                <input class="form-control" type="text" 
-                        name="search" (keyup)="applyFilter($event)" placeholder="Search State here" autocomplete="off" >
-        </div>
-
+<ng-container  *ngIf="showTable">
+    <div class="col-md-4">
+        <input class="form-control" type="text" 
+                name="search" (keyup)="applyFilter($event)" placeholder="Search State here" autocomplete="off" >
+</div>
+</ng-container>
+       
+<ng-container>
       <div class="col-md-4">
           <!-- <label> Please Choose a Date and Click on Apply</label> -->
           <input [(ngModel)]="from" id ="from" name="from"  type = "date" class = "datepicker" />
       </div>
 
       <div class="col-md-4">
-          <button class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="action">Submit
+          <button   class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="action">Submit
               <i class="material-icons right">send</i>
-            </button>
+            </button> 
+            <button  *ngIf="!showTable" class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="action">Ssubmit
+                <i class="material-icons right">send</i>
+              </button>
       </div>
+
+    </ng-container>
  
 </div>
 
