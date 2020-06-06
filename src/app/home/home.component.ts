@@ -224,6 +224,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
+  closeCard() {
+    this.loadCardData = false;
+  }
+
 
 
 }

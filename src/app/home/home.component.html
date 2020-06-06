@@ -254,10 +254,15 @@
         <img class="activator" src="../../assets/states/india.jpg">
       </div>
        <div class="card-content" (click)="clickedtoOpen(names)">
-         <span class="card-title activator grey-text text-darken-4">{{names}}<i class="material-icons right">more_vert</i></span>
-       </div>
+         <span  class="card-title activator grey-text text-darken-4">{{names}}<i (click)="clickedtoOpen(names)" class="material-icons right">more_vert</i></span>
+        
+          <small>
+              Click State name for more details
+          </small>
+       
+        </div>
        <div class="card-reveal" *ngIf="loadCardData">
-         <span class="card-title grey-text text-darken-4">{{names}}<i class="material-icons right">close</i></span>
+         <span class="card-title grey-text text-darken-4">{{names}}<i class="material-icons right" (click)="closeCard()">close</i></span>
          <p>Date:{{selectedDate}}</p>
          <p>Recovered:{{clickedData.total.recovered}} <small *ngIf="clickedData.delta"> +{{clickedData.delta.recovered}}</small></p>
          <p>Confirmed:{{clickedData.total.confirmed}}<small *ngIf="clickedData.delta"> + {{clickedData.delta.confirmed}}</small></p>
