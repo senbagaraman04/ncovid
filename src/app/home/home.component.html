@@ -119,9 +119,9 @@
           <button   class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="action">Submit
               <i class="material-icons right">send</i>
             </button> 
-            <button  *ngIf="!showTable" class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="action">Ssubmit
+            <!-- <button  *ngIf="!showTable" class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="action">Ssubmit
                 <i class="material-icons right">send</i>
-              </button>
+              </button> -->
       </div>
 
     </ng-container>
@@ -245,35 +245,40 @@
 <!-- Archived Data Loads Here-->
  
 <ng-container *ngIf="!showTable">
-
-
-     <ng-container class="row" *ngFor="let name of stateNames">
-     
-
-
-     <div class="card" style="width:30%">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="../../assets/states/{{name}}.jpg">
-        </div>
-        <div class="card-content" (click)="clickedtoOpen()">
-          <span class="card-title activator grey-text text-darken-4">{{name}}<i class="material-icons right">more_vert</i></span>
-        </div>
-        <div class="card-reveal" >
-          <span class="card-title grey-text text-darken-4">{{name}}<i class="material-icons right">close</i></span>
-          <p>Date: {{from}}</p>
-          <p>Recovered:</p>
-          <p>Confirmed:</p>
-          <p>Deceased:</p>
-          <p>Tested:</p>
-        </div>
-      </div>
-
-
-    </ng-container>
-
-
+  
+  <div  class="row"> 
     
+    <div class="card mr-3" style="width:30%" *ngFor="let names of stateNames">
+       <div class="card-image waves-effect waves-block waves-light" (click)="clickedtoOpen(names)">
+        <img class="activator" src="../../assets/states/india.jpg">
+      </div>
+       <div class="card-content" (click)="clickedtoOpen(names)">
+         <span class="card-title activator grey-text text-darken-4">{{names}}<i class="material-icons right">more_vert</i></span>
+       </div>
+       <div class="card-reveal" *ngIf="loadCardData">
+         <span class="card-title grey-text text-darken-4">{{names}}<i class="material-icons right">close</i></span>
+         <p>Date:{{selectedDate}}</p>
+         <p>Recovered:{{clickedData.total.recovered}} <small *ngIf="clickedData.delta.recovered > 0 "> +{{clickedData.delta.recovered}}</small></p>
+         <p>Confirmed:{{clickedData.total.confirmed}}<small> + {{clickedData.delta.confirmed}}</small></p>
+         <p>Deceased:{{clickedData.total.deceased}} <small> + {{clickedData.delta.deceased}}</small> </p>
+         <p>Tested:{{clickedData.total.tested}}     <small> + {{clickedData.delta.tested}}</small> </p>
+
+         <small class="text-muted">
+               Last updated {{clickedData.meta.tested.last_updated}}
+              <p> Source <a href="{{clickedData.meta.tested.source}}">Source</a> </p>
+         </small>
+       </div>
+       </div>
+    
+   </div>
+    
+
   </ng-container>
+
+  
+
+
+
 
 
 

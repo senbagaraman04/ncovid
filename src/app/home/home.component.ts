@@ -1,14 +1,14 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { HttpService } from '../services/http.service';
-import { Statewise, CasesTimeSeries} from '../services/covidinterface.service';
+import { Statewise, CasesTimeSeries } from '../services/covidinterface.service';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import {  AfterViewInit} from '@angular/core';
+import { AfterViewInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Chart } from 'chart.js';  
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-home',
@@ -23,10 +23,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   states: Statewise[];
   subscription: Subscription;
   statusText: string;
-  displayedColumns: string[] = ['State','Recovered','Confirmed','Deaths','Active'];
+  displayedColumns: string[] = ['State', 'Recovered', 'Confirmed', 'Deaths', 'Active'];
   data = new MatTableDataSource(null);
   searchText;
-  loading : boolean = true;
+  loading: boolean = true;
   dailyConfirmedCases = [];
   dailyDeceasedCases = [];
   dailyRecoveredCases = [];
@@ -38,137 +38,228 @@ export class HomeComponent implements OnInit, AfterViewInit {
   maxDate: Date;
   public from;
   m: any;
-  showTable: boolean = false;
-  stateNames= [];
+  showTable: boolean = true;
+  stateNames = [];
   stateCodes = [];
   stateStatus = [];
-  constructor(private httpService:HttpService,private router:Router) { }
+  selectedDate: any;
+  receivedData: any;
+  clickedData: any;
+  loadCardData : boolean = false;
+  constructor(private httpService: HttpService, private router: Router) { }
+
+
+
 
   ngOnInit(): void {
 
-    console.log(this.loading);
-
+    this.assignStateNames();
     this.httpService.getfullData().subscribe(response => {
       this.timeSeriesStates = response.cases_time_series;
       this.loadGraphData();
-    }); 
-  
-
-    this.subscription = timer(0, 1000000).pipe(switchMap(() => this.httpService.getfullData())).subscribe(response => 
-      {
-        this.country = response.statewise[0];
-        this.states =response.statewise.slice(1);
-        console.log( this.states )
-        this.data = new MatTableDataSource(this.states);
-        this.loading = false;
-    
-      });    
-    
-    }
+    });
 
 
-  /**To load the data into Graphs */  
-  loadGraphData() : void {
+    this.subscription = timer(0, 1000000).pipe(switchMap(() => this.httpService.getfullData())).subscribe(response => {
+      this.country = response.statewise[0];
+      this.states = response.statewise.slice(1);
+      console.log(this.states)
+      this.data = new MatTableDataSource(this.states);
+      this.loading = false;
+
+    });
+
+  }
+
+
+  /**To load the data into Graphs */
+  loadGraphData(): void {
     console.log(this.from);
 
-     this.timeSeriesStates.forEach(res => {
-       this.dailyConfirmedCases.push(res.dailyconfirmed);
-       this.dailyRecoveredCases.push(res.dailyrecovered);
-       this.dailyDeceasedCases.push(res.dailydeceased);
-       this.dateData.push(res.date);
-       
-     });
-     this.linechartConfirmed = new Chart('covidCharts', {  
-      type: 'line',  
-      data: {  
-        labels: this.dateData,  
-        datasets: [  
-          {  
-            data: this.dailyConfirmedCases,  
+    this.timeSeriesStates.forEach(res => {
+      this.dailyConfirmedCases.push(res.dailyconfirmed);
+      this.dailyRecoveredCases.push(res.dailyrecovered);
+      this.dailyDeceasedCases.push(res.dailydeceased);
+      this.dateData.push(res.date);
+
+    });
+
+    this.linechartConfirmed = new Chart('covidCharts', {
+      type: 'line',
+      data: {
+        labels: this.dateData,
+        datasets: [
+          {
+            data: this.dailyConfirmedCases,
             label: 'Confirmed',
             borderColor: "red"
           },
           {
-            data: this.dailyRecoveredCases,  
+            data: this.dailyRecoveredCases,
             label: 'Recovered',
-           borderColor: "green"
-           },
-           {
-            data: this.dailyDeceasedCases,  
+            borderColor: "green"
+          },
+          {
+            data: this.dailyDeceasedCases,
             label: 'Deceased',
             borderColor: "#0000FF"
-           }     
-        ]  
-      },  
-      options: {  
-        legend: {  
+          }
+        ]
+      },
+      options: {
+        legend: {
           display: true,
-        },  
-        scales: {  
-          xAxes: [{  
-            display: true  
-          }],  
-          yAxes: [{  
-            display: true  
-          }],  
-        }  
-      }  
-    });  
+        },
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }],
+        }
+      }
+    });
 
   }
 
 
- 
+
 
 
   ngAfterViewInit(): void {
-   this.data = new MatTableDataSource(this.states);
+    this.data = new MatTableDataSource(this.states);
 
   }
 
 
-  rowRedirect(row, Event: Event) : void {
+  rowRedirect(row, Event: Event): void {
     sessionStorage.setItem("rowData", JSON.stringify(row));
     this.router.navigate(['/state-wise/stateWise']);
   }
 
 
-  applyFilter(event: Event) : void {
-      this.data.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  applyFilter(event: Event): void {
+    this.data.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
 
   }
 
 
 
-  onSubmitButtonClick() : void {
-
-    this.stateNames = ["TamilNadu", "Kerala"];
-    if(this.from != undefined)
-    {
+  onSubmitButtonClick(): void {
+    this.loadCardData = !this.loadCardData;
+    if (this.from != undefined) {
       this.showTable = false;
       this.httpService.getFullDataonDate(this.from).subscribe(particularResponse => {
-         this.processNewData(particularResponse);
-       console.log(Object.values(particularResponse));
+        this.receivedData = particularResponse;
+        this.selectedDate = this.from;
       });
     }
 
   }
 
 
-  processNewData(datas) {
-    Object.keys(datas).forEach(function (key) {
-      console.log("*****")
-      console.log(key);
-      console.log(datas[key]);
-      console.log("*****")
-    });
-    Object.values(datas).forEach(x => { console.log(x) });
+
+  clickedtoOpen(stateName) : void {
+    this.loadCardData =  true;//!this.loadCardData;
+    let returnSelectedStateCode = this.selectedStateCode(stateName);    
+    this.clickedData = this.receivedData[returnSelectedStateCode];   
+    console.log(this.clickedData);
   }
 
 
-  clickedtoOpen() {
-    console.log("Card Opened");
+/**Returns the two digit code for passed state */
+  selectedStateCode(state) : string {
+    let stateCode;
+
+    switch(state) {
+      case "Andhra Pradesh" : stateCode = 'AP'; break;
+      case "Arunachal Pradesh" : stateCode = 'AR'; break;
+      case "Andaman and Nicobar Islands" : stateCode = 'AN'; break;
+      case "Bihar" : stateCode = 'BR'; break;
+      case "Chandigarh" : stateCode = 'CH'; break;
+      case "Chhattisgarh" : stateCode = 'CT'; break;
+      case "Delhi" : stateCode = 'DL'; break;
+      case "Daman and Diu" : stateCode = 'DN'; break;
+      case "Goa" : stateCode = 'GA'; break;
+      case "Gujarat" : stateCode = 'GJ'; break;
+      case "Haryana" : stateCode = 'HR'; break;
+      case "Himachal Pradesh" : stateCode = 'HP'; break;
+      case "Jammu and Kashmir" : stateCode = 'JK'; break;
+      case "Jharkhand" : stateCode = 'JH'; break;
+      case "Karnataka" : stateCode = 'KA'; break;
+      case "Kerala" : stateCode = 'KL'; break;
+      case "Madhya Pradesh" : stateCode = 'MP'; break;
+      case "Maharashtra" : stateCode = 'MH'; break;
+      case "Manipur" : stateCode = 'MN'; break;
+      case "Meghalaya" : stateCode = 'ML'; break;
+      case "Mizoram" : stateCode = 'MZ'; break;
+      case "Nagaland" : stateCode = 'NL'; break;
+      case "Odisha" : stateCode = 'OR'; break;
+      case "Punjab" : stateCode = 'PB'; break;
+      case "Rajasthan" : stateCode = 'RJ'; break;
+      case "Sikkim" : stateCode = 'SK'; break;
+      case "Tamil Nadu" : stateCode = 'TN'; break;
+      case "Telangana" : stateCode = 'TG'; break;
+      case "Tripura" : stateCode = 'TR'; break;
+      case "Uttarakhand" : stateCode = 'UT'; break;
+      case "Uttar Pradesh" : stateCode = 'UP'; break;
+      case "West Bengal" : stateCode = 'WB'; break;
+      case "Dadra and Nagar Haveli" : stateCode = 'DN'; break;
+      case "Lakshadweep" : stateCode = 'LD'; break;
+      case "Puducherry" : stateCode = 'PY'; break;
+
+    }
+   
+
+    return stateCode;
+
   }
+
+
+  /** Assigns State name to an array*/
+  assignStateNames() {
+    this.stateNames = [
+      'Andhra Pradesh',
+      'Arunachal Pradesh',
+      'Assam',
+      'Bihar',
+      'Chhattisgarh',
+      'Goa',
+      'Gujarat',
+      'Haryana',
+      'Himachal Pradesh',
+      'Jammu and Kashmir',
+      'Jharkhand',
+      'Karnataka',
+      'Kerala',
+      'Madhya Pradesh',
+      'Maharashtra',
+      'Manipur',
+      'Meghalaya',
+      'Mizoram',
+      'Nagaland',
+      'Odisha',
+      'Punjab',
+      'Rajasthan',
+      'Sikkim',
+      'Tamil Nadu',
+      'Telangana',
+      'Tripura',
+      'Uttarakhand',
+      'Uttar Pradesh',
+      'West Bengal',
+      'Andaman and Nicobar Islands',
+      'Chandigarh',
+      'Dadra and Nagar Haveli',
+      'Daman and Diu',
+      'Delhi',
+      'Lakshadweep',
+      'Puducherry']
+
+  }
+
+
 
 }
 
