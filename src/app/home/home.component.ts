@@ -54,6 +54,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   receivedData: any;
   clickedData: any;
   loadCardData : boolean = false;
+  showAlert: boolean = false;
+
   constructor(private httpService: HttpService, private router: Router) { }
 
 
@@ -154,15 +156,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
   onSubmitButtonClick(): void {
 
     this.loadCardData = false;
+
+    let sday = new Date(this.from);
+    let tday = new Date();
+
+    console.log(sday);
+    console.log(tday);
+console.log(<any>tday-<any>sday > 0 )
    
-    if (this.from != undefined) {
+    if (<any>tday-<any>sday > 0 && this.from != undefined) {
       this.showTable = false;
+      this.showAlert = false;
       this.httpService.getFullDataonDate(this.from).subscribe(particularResponse => {
         this.receivedData = particularResponse;
         this.selectedDate = this.from;
         console.log(particularResponse);
       });
     }
+    else{
+      this.showAlert = true;
+    }
+
+    setTimeout(function() {
+      $('#alertMessage').fadeOut('fast');
+  }, 30000);
 
   }
 
