@@ -229,6 +229,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
 
+  onBackButtonClicked(): void {
+    this.showTable = true;
+    
+  }
+
 
 }
 
