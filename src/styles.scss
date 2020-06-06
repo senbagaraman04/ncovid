@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+// @import "../node_modules/bootstrap/dist/css/bootstrap.css";
 
 @import "./material-theme.scss";
 @import "../node_modules/materialize-css/sass/materialize.scss";
+
+@import '~material-design-icons-iconfont/dist/material-design-icons.css';
+@import '~materialize-css/sass/materialize';
+
+
 html,body { 
     height: 100%;
  }

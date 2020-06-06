@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { MaterializeModule } from 'angular2-materialize';
+
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -11,12 +13,15 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import { StateWiseComponent } from './state-wise/state-wise.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    StateWiseComponent
+    StateWiseComponent,
+    ArchiveComponent
   ],
   imports: [
     DemoMaterialModule,
@@ -25,7 +30,9 @@ import { StateWiseComponent } from './state-wise/state-wise.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MaterializeModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

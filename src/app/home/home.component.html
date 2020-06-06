@@ -99,33 +99,48 @@
 
 
 
-<div class="row">
-  <div class="col-md-5">
-      <div class="search-hero">
-          <input class="form-control" type="text" 
-                  name="search" (keyup)="applyFilter($event)" placeholder="Search State here" autocomplete="off" >
-        </div>
-  </div>
+  <!--Search Bar Calendar and Submit Button-->
+<div class="row col-md-12">
+    
+<ng-container  *ngIf="showTable">
+    <div class="col-md-3">
+        <input class="form-control" type="text" 
+                name="search" (keyup)="applyFilter($event)" placeholder="Search State here" autocomplete="off" >
+</div>
+</ng-container>
+       
+<ng-container>
+      <div class="col-md-3">
+          <!-- <label> Please Choose a Date and Click on Apply</label> -->
+          <input [(ngModel)]="from" id ="from" name="from"  type = "date" class = "datepicker" />
+      </div>
 
+      <div class="col-md-6">
+          <button   class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="submit">Submit
+              <i class="material-icons right">send</i>
+            </button> 
+            
+             <button  *ngIf="!showTable" class="btn waves-effect waves-light ml-2" type="submit" (click)="showTable = true" name="action">Back 
+                <i class="material-icons right">send</i>
+              </button>
+      </div>
+
+
+      <div id="alertMessage" class="col-md-6" *ngIf="showAlert">
+          <div class="alert alert-primary" role="alert">
+              Please Select a Valid Date range
+            </div>
+      </div>
+
+    </ng-container>
  
 </div>
 
 
 
-
-
-
-
- 
-  <!-- <div class="col-md-4">
-      <strong>Where did the Data come from ?</strong>
-      <p> The data has been injected from <a href="https://www.covid19india.org/" target="_blank">Covid19India</a> API.</p>
-    </div> -->
-
-
   <!--Table Starts here -->
 
-  <div class="example-container ">
+  <div class="example-container"  *ngIf="showTable">
 
     <div class="col-md-12">
 
@@ -198,8 +213,7 @@
   </div>
 
 
- 
-  
+
 
 </div>
 
@@ -216,7 +230,7 @@
 
 
   <!--Graph starts here -->
-<ng-container class="chart-wrapper" >
+<ng-container class="chart-wrapper" *ngIf="showTable">
     <div class="row" style="padding-top: 28px;margin-left:40%;">  
         <span class="tealText">
          nCovid Trends in India
@@ -232,6 +246,52 @@
 </ng-container >
 
 <!--Graph ends here -->
+
+
+
+
+<!-- Archived Data Loads Here-->
+ 
+<ng-container *ngIf="!showTable">
+  
+  <div  class="row"> 
+    
+    <div class="card mr-3" style="width:30%" *ngFor="let names of stateNames">
+       <div class="card-image waves-effect waves-block waves-light" (click)="clickedtoOpen(names)">
+        <img class="activator" src="../../assets/states/india.jpg">
+      </div>
+       <div class="card-content" (click)="clickedtoOpen(names)">
+         <span  class="card-title activator grey-text text-darken-4">{{names}}<i (click)="clickedtoOpen(names)" class="material-icons right">more_vert</i></span>
+        
+          <small>
+              Click State name for more details
+          </small>
+       
+        </div>
+       <div class="card-reveal" *ngIf="loadCardData">
+         <span class="card-title grey-text text-darken-4">{{names}}<i class="material-icons right" (click)="loadCardData = false">close</i></span>
+         <p>Date:{{selectedDate}}</p>
+         <p>Recovered:{{clickedData.total.recovered}} <small *ngIf="clickedData.delta"> +{{clickedData.delta.recovered}}</small></p>
+         <p>Confirmed:{{clickedData.total.confirmed}}<small *ngIf="clickedData.delta"> + {{clickedData.delta.confirmed}}</small></p>
+         <p>Deceased:{{clickedData.total.deceased}} <small *ngIf="clickedData.delta"> + {{clickedData.delta.deceased}}</small> </p>
+         <p>Tested:{{clickedData.total.tested}}     <small *ngIf="clickedData.delta"> + {{clickedData.delta.tested}}</small> </p>
+
+         <small class="text-muted">
+               Last updated {{clickedData.meta.tested.last_updated}}
+              <p> Source <a href="{{clickedData.meta.tested.source}}">Source</a> </p>
+         </small>
+       </div>
+       </div>
+    
+   </div>
+    
+
+  </ng-container>
+
+  
+
+
+
 
 
 
