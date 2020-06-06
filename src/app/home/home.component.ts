@@ -7,6 +7,7 @@ import { AfterViewInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import * as $ from "jquery";
 
 import { Chart } from 'chart.js';
 
