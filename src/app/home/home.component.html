@@ -116,7 +116,7 @@
       </div>
 
       <div class="col-md-4">
-          <button   class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="action">Submit
+          <button   class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="submit">Submit
               <i class="material-icons right">send</i>
             </button> 
             <!-- <button  *ngIf="!showTable" class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="action">Ssubmit
@@ -249,6 +249,7 @@
   <div  class="row"> 
     
     <div class="card mr-3" style="width:30%" *ngFor="let names of stateNames">
+        {{names}}
        <div class="card-image waves-effect waves-block waves-light" (click)="clickedtoOpen(names)">
         <img class="activator" src="../../assets/states/india.jpg">
       </div>
@@ -258,10 +259,10 @@
        <div class="card-reveal" *ngIf="loadCardData">
          <span class="card-title grey-text text-darken-4">{{names}}<i class="material-icons right">close</i></span>
          <p>Date:{{selectedDate}}</p>
-         <p>Recovered:{{clickedData.total.recovered}} <small *ngIf="clickedData.delta.recovered > 0 "> +{{clickedData.delta.recovered}}</small></p>
-         <p>Confirmed:{{clickedData.total.confirmed}}<small> + {{clickedData.delta.confirmed}}</small></p>
-         <p>Deceased:{{clickedData.total.deceased}} <small> + {{clickedData.delta.deceased}}</small> </p>
-         <p>Tested:{{clickedData.total.tested}}     <small> + {{clickedData.delta.tested}}</small> </p>
+         <p>Recovered:{{clickedData.total.recovered}} <small *ngIf="clickedData.delta"> +{{clickedData.delta.recovered}}</small></p>
+         <p>Confirmed:{{clickedData.total.confirmed}}<small *ngIf="clickedData.delta"> + {{clickedData.delta.confirmed}}</small></p>
+         <p>Deceased:{{clickedData.total.deceased}} <small *ngIf="clickedData.delta"> + {{clickedData.delta.deceased}}</small> </p>
+         <p>Tested:{{clickedData.total.tested}}     <small *ngIf="clickedData.delta"> + {{clickedData.delta.tested}}</small> </p>
 
          <small class="text-muted">
                Last updated {{clickedData.meta.tested.last_updated}}

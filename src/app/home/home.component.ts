@@ -129,7 +129,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.data = new MatTableDataSource(this.states);
-
+    this.assignStateNames();
   }
 
 
@@ -147,12 +147,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   onSubmitButtonClick(): void {
+    this.assignStateNames();
+
     this.loadCardData = !this.loadCardData;
+   
     if (this.from != undefined) {
       this.showTable = false;
       this.httpService.getFullDataonDate(this.from).subscribe(particularResponse => {
         this.receivedData = particularResponse;
         this.selectedDate = this.from;
+        console.log(particularResponse);
       });
     }
 
