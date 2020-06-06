@@ -39,8 +39,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public from;
   m: any;
   showTable: boolean = true;
-  stateNames = [];
-  stateCodes = [];
+  stateNames = ['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat',
+    'Haryana','Himachal Pradesh',
+    'Jammu and Kashmir','Jharkhand','Karnataka','Kerala',
+    'Madhya Pradesh','Maharashtra',
+    'Manipur','Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan',
+    'Sikkim','Tamil Nadu','Telangana', 'Tripura','Uttarakhand',
+    'Uttar Pradesh','West Bengal',  'Andaman and Nicobar Islands','Chandigarh', 'Dadra and Nagar Haveli',
+    'Daman and Diu','Delhi','Lakshadweep', 'Puducherry']
+    
+    stateCodes = [];
   stateStatus = [];
   selectedDate: any;
   receivedData: any;
@@ -53,7 +61,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    this.assignStateNames();
     this.httpService.getfullData().subscribe(response => {
       this.timeSeriesStates = response.cases_time_series;
       this.loadGraphData();
@@ -70,6 +77,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
 
   }
+
+
+  
+  ngAfterViewInit(): void {
+    this.data = new MatTableDataSource(this.states);
+  }
+
+
 
 
   /**To load the data into Graphs */
@@ -123,16 +138,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
-
-
-
-
-  ngAfterViewInit(): void {
-    this.data = new MatTableDataSource(this.states);
-    this.assignStateNames();
-  }
-
-
   rowRedirect(row, Event: Event): void {
     sessionStorage.setItem("rowData", JSON.stringify(row));
     this.router.navigate(['/state-wise/stateWise']);
@@ -147,9 +152,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   onSubmitButtonClick(): void {
-    this.assignStateNames();
 
-    this.loadCardData = !this.loadCardData;
+    this.loadCardData = false;
    
     if (this.from != undefined) {
       this.showTable = false;
@@ -217,49 +221,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
    
 
     return stateCode;
-
-  }
-
-
-  /** Assigns State name to an array*/
-  assignStateNames() {
-    this.stateNames = [
-      'Andhra Pradesh',
-      'Arunachal Pradesh',
-      'Assam',
-      'Bihar',
-      'Chhattisgarh',
-      'Goa',
-      'Gujarat',
-      'Haryana',
-      'Himachal Pradesh',
-      'Jammu and Kashmir',
-      'Jharkhand',
-      'Karnataka',
-      'Kerala',
-      'Madhya Pradesh',
-      'Maharashtra',
-      'Manipur',
-      'Meghalaya',
-      'Mizoram',
-      'Nagaland',
-      'Odisha',
-      'Punjab',
-      'Rajasthan',
-      'Sikkim',
-      'Tamil Nadu',
-      'Telangana',
-      'Tripura',
-      'Uttarakhand',
-      'Uttar Pradesh',
-      'West Bengal',
-      'Andaman and Nicobar Islands',
-      'Chandigarh',
-      'Dadra and Nagar Haveli',
-      'Daman and Diu',
-      'Delhi',
-      'Lakshadweep',
-      'Puducherry']
 
   }
 

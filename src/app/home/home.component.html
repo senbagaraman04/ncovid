@@ -103,22 +103,23 @@
 <div class="row col-md-12">
     
 <ng-container  *ngIf="showTable">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <input class="form-control" type="text" 
                 name="search" (keyup)="applyFilter($event)" placeholder="Search State here" autocomplete="off" >
 </div>
 </ng-container>
        
 <ng-container>
-      <div class="col-md-4">
+      <div class="col-md-3">
           <!-- <label> Please Choose a Date and Click on Apply</label> -->
           <input [(ngModel)]="from" id ="from" name="from"  type = "date" class = "datepicker" />
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-6">
           <button   class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="submit">Submit
               <i class="material-icons right">send</i>
             </button> 
+            
             <!-- <button  *ngIf="!showTable" class="btn waves-effect waves-light" type="submit" (click)="onSubmitButtonClick()" name="action">Ssubmit
                 <i class="material-icons right">send</i>
               </button> -->
@@ -249,7 +250,6 @@
   <div  class="row"> 
     
     <div class="card mr-3" style="width:30%" *ngFor="let names of stateNames">
-        {{names}}
        <div class="card-image waves-effect waves-block waves-light" (click)="clickedtoOpen(names)">
         <img class="activator" src="../../assets/states/india.jpg">
       </div>
