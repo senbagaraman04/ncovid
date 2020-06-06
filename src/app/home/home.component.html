@@ -120,7 +120,7 @@
               <i class="material-icons right">send</i>
             </button> 
             
-             <button  *ngIf="!showTable" class="btn waves-effect waves-light ml-2" type="submit" (click)="onBackButtonClicked()" name="action">Back 
+             <button  *ngIf="!showTable" class="btn waves-effect waves-light ml-2" type="submit" (click)="showTable = true" name="action">Back 
                 <i class="material-icons right">send</i>
               </button>
       </div>
@@ -262,7 +262,7 @@
        
         </div>
        <div class="card-reveal" *ngIf="loadCardData">
-         <span class="card-title grey-text text-darken-4">{{names}}<i class="material-icons right" (click)="closeCard()">close</i></span>
+         <span class="card-title grey-text text-darken-4">{{names}}<i class="material-icons right" (click)="loadCardData = false">close</i></span>
          <p>Date:{{selectedDate}}</p>
          <p>Recovered:{{clickedData.total.recovered}} <small *ngIf="clickedData.delta"> +{{clickedData.delta.recovered}}</small></p>
          <p>Confirmed:{{clickedData.total.confirmed}}<small *ngIf="clickedData.delta"> + {{clickedData.delta.confirmed}}</small></p>
