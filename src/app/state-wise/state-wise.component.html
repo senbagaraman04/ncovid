@@ -113,6 +113,39 @@
 
 <!--/Patient Count Cards-->
 
+<div class="cardsDataInfo row">
+    
+     <div class="mb-2 col-md-6 card1">
+            <mat-card>
+                    <mat-card-header>
+                            <mat-card-title>Recovery Rate</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <h1 class="center">{{this.recoveryRatePer.toFixed(2)}}%</h1>
+                                For every 100 confirmed cases, {{this.recoveryRatePer.toFixed(0)}} were recovered
+                        </mat-card-content>
+             
+            </mat-card>
+
+         </div>
+
+         <div class="mb-2 col-md-6 card2" *ngIf="growthCard">
+                <mat-card>
+                        <mat-card-header>
+                                <mat-card-title>Growth Rate</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <h1 class="center">{{this.growthRatePer.toFixed(2)}}%</h1>
+                                 {{this.secondDate}} to {{this.firstDate}}, active cases  registered count
+                            </mat-card-content>
+                 
+                </mat-card>
+    
+             </div>
+</div>
+
+
+
 <!--District Wise Row comes here-->
 
 <div class="modal-row" >
