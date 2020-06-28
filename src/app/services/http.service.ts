@@ -35,4 +35,9 @@ export class HttpService {
   }
 
 
+
+  getStateWiseData(): Observable<any> {
+    return this.http.get<any>("https://api.covid19india.org/v3/min/data.min.json").pipe(retry(2))
+  }
+
 }
