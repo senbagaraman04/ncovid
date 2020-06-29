@@ -88,7 +88,7 @@ export class StateWiseComponent implements OnInit {
   cardData() {
 
       let tday = new Date();
-      tday.setDate(tday.getDate()-1)
+      tday.setDate(tday.getDate()-2)
 
       
       

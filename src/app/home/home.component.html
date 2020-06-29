@@ -19,6 +19,28 @@
 
 <hr>
 
+
+  <!--Graph starts here -->
+  <ng-container class="chart-wrapper" *ngIf="showTable">
+    <div class="row" style="padding-top: 28px;margin-left:40%;">  
+        <span class="tealText">
+       
+        </span>
+        </div>
+        <div class="row">
+            <div class="chart-container" style="position: relative;margin-left:0px;height:50vh; width:50vw ">    
+            
+                <canvas id="covidCharts">{{ linechartConfirmed }}</canvas> 
+                      </div>
+        </div>
+      
+</ng-container >
+
+<!--Graph ends here -->
+
+
+
+
 <div class="totalCases-card" *ngIf="!loading">
 
 
@@ -229,23 +251,7 @@
 
 
 
-  <!--Graph starts here -->
-<ng-container class="chart-wrapper" *ngIf="showTable">
-    <div class="row" style="padding-top: 28px;margin-left:40%;">  
-        <span class="tealText">
-         nCovid Trends in India
-        </span>
-        </div>
-        <div class="row">
-            <div class="chart-container" style="position: relative;margin-left:0px;height:50vh; width:50vw ">    
-            
-                <canvas id="covidCharts">{{ linechartConfirmed }}</canvas> 
-                      </div>
-        </div>
-      
-</ng-container >
 
-<!--Graph ends here -->
 
 
 
