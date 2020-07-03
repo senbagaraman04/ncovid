@@ -38,7 +38,6 @@ export class StateWiseComponent implements OnInit {
     if(this.rowData ==null){
       this.router.navigate(['']);
     }
-
    
 
     if(this.rowData.active == 0 && this.rowData.confirmed == 0)
@@ -73,14 +72,9 @@ export class StateWiseComponent implements OnInit {
   /**Data to fill up the Table */
   tabledataFillup(districtData: any) {
        this.data = new MatTableDataSource(districtData);
-
-
        this.httpService.getStateWiseData().subscribe(particularResponse => {
         console.log(particularResponse);
       });
-
-     
-
   }
 
 
@@ -88,11 +82,8 @@ export class StateWiseComponent implements OnInit {
   cardData() {
 
       let tday = new Date();
-      tday.setDate(tday.getDate()-2)
-
+      tday.setDate(tday.getDate()-2)   
       
-      
-
       let tenDaysBefore = new Date();
       tenDaysBefore.setDate(tday.getDate()-10);
 
@@ -101,8 +92,8 @@ export class StateWiseComponent implements OnInit {
 
       this.httpService.getFullDataonDate(this.firstDate).subscribe(element=>{
         this.firstResponse = element[this.rowData.statecode];
-      })
-
+      });
+    
       this.httpService.getFullDataonDate(this.secondDate).subscribe(element=>{
         this.secondResponse = element[this.rowData.statecode];
 
@@ -112,14 +103,9 @@ export class StateWiseComponent implements OnInit {
        this.growthCard = true;
       })
 
-
       this.recoveryRatePer = (this.rowData.recovered / this.rowData.confirmed) * 100;
 
   }
-
-
-
-
 
 
   /**Search for the text in table */
