@@ -142,8 +142,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   rowRedirect(row, Event: Event): void {
-    sessionStorage.setItem("rowData", JSON.stringify(row));
-    this.router.navigate(['/state-wise/stateWise']);
+    if(!(row.statecode == "UN"))
+    {
+      sessionStorage.setItem("rowData", JSON.stringify(row));
+      this.router.navigate(['/state-wise/stateWise']);
+    }
   }
 
 
