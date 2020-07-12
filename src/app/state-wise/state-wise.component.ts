@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Statewise, DistrictData } from '../services/covidinterface.service';
+import { Component, OnInit,NgZone } from '@angular/core';
+import { Statewise, DistrictData, SuperPlaceholder } from '../services/covidinterface.service';
 import { HttpService } from '../services/http.service';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { TestBed } from '@angular/core/testing';
+
+
+
+
 
 @Component({
   selector: 'app-state-wise',
@@ -24,13 +28,16 @@ export class StateWiseComponent implements OnInit {
   growthRatePer: number;
   firstResponse: any;
   secondResponse : any;
+  comparedResponse:any;
   firstDate: string;
   secondDate: string;
+  comparedDate:string;
   growthCard:boolean = false;
-  constructor(private httpService:HttpService,private router:Router) { }
+  differenceIncrease: number;
+  constructor(private httpService:HttpService,private router:Router,private zone: NgZone) { }
 
   rowData: any;
-  
+  sp;
   ngOnInit(): void {
     this.rowData = JSON.parse(sessionStorage.getItem("rowData"));
     console.log(this.rowData);
@@ -65,6 +72,18 @@ export class StateWiseComponent implements OnInit {
             });
         }); 
     }
+
+    this.zone.runOutsideAngular(() => {
+      this.sp = new SuperPlaceholder({
+        placeholders: ["Salem", "Bengaluru", "Chennai", "Mumbai", "North Delhi",
+      "Chirapunji"],
+      preText: '',
+        stay: 100,
+        speed: 100,
+        element: '#dynamic-placeholder'
+      });
+      this.sp.init();
+    });
      
   }
 
@@ -82,27 +101,54 @@ export class StateWiseComponent implements OnInit {
   cardData() {
 
       let tday = new Date();
-      tday.setDate(tday.getDate()-2)   
-      
+      tday.setDate(tday.getDate()-2);
+      console.log(tday);
+
+//To compare the increase count of percentage of cases in the state
+      let comparedValue = new Date();
+      comparedValue.setDate(tday.getDate()-1);
+      console.log(comparedValue);
+
+
       let tenDaysBefore = new Date();
       tenDaysBefore.setDate(tday.getDate()-10);
+      console.log(tenDaysBefore);
 
       this.firstDate =tday.toISOString().slice(0,10);
       this.secondDate = tenDaysBefore.toISOString().slice(0,10);
 
+      this.comparedDate = comparedValue.toISOString().slice(0,10);
+
       this.httpService.getFullDataonDate(this.firstDate).subscribe(element=>{
         this.firstResponse = element[this.rowData.statecode];
       });
+
+      this.httpService.getFullDataonDate(this.comparedDate).subscribe(element=>{
+        this.comparedResponse = element[this.rowData.statecode];
+      });
     
       this.httpService.getFullDataonDate(this.secondDate).subscribe(element=>{
-        this.secondResponse = element[this.rowData.statecode];
+      this.secondResponse = element[this.rowData.statecode];
 
-           let difference = this.firstResponse.total.confirmed-this.secondResponse.total.confirmed;
-          let tendaysBeforeConfirmed = this.secondResponse.total.confirmed;
+      let difference = this.firstResponse.total.confirmed-this.secondResponse.total.confirmed;
+      console.log(difference);
+      let tendaysBeforeConfirmed = this.secondResponse.total.confirmed;
        this.growthRatePer =  (((difference/tendaysBeforeConfirmed)*100)/10);
+       console.log(this.growthRatePer)
        this.growthCard = true;
+
+
+
+        difference = this.comparedResponse.total.confirmed-this.secondResponse.total.confirmed;
+       console.log(difference);
+        tendaysBeforeConfirmed = this.comparedResponse.total.confirmed;
+        console.log(tendaysBeforeConfirmed);
+        console.log( (((difference/tendaysBeforeConfirmed)*100)/9))
+       this.differenceIncrease =  this.growthRatePer - (((difference/tendaysBeforeConfirmed)*100)/9);
       })
 
+
+     
       this.recoveryRatePer = (this.rowData.recovered / this.rowData.confirmed) * 100;
 
   }

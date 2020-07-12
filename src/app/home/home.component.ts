@@ -1,6 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { HttpService } from '../services/http.service';
-import { Statewise, CasesTimeSeries } from '../services/covidinterface.service';
+import { Statewise, CasesTimeSeries, SuperPlaceholder } from '../services/covidinterface.service';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { AfterViewInit } from '@angular/core';
@@ -56,8 +56,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   clickedData: any;
   loadCardData : boolean = false;
   showAlert: boolean = false;
- 
-  constructor(private httpService: HttpService, private router: Router) { }
+ sp;
+  constructor(private httpService: HttpService, private router: Router,private zone: NgZone) { }
 
 
 
@@ -79,6 +79,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     });
 
+    this.zone.runOutsideAngular(() => {
+      this.sp = new SuperPlaceholder({
+        placeholders: ["Tamil Nadu", "Kerala", "Delhi", "Arunachal Pradesh", "Sikkim"],
+      preText: '',
+        stay: 100,
+        speed: 100,
+        element: '#dynamic-placeholder'
+      });
+      this.sp.init();
+    });
   }
 
 
