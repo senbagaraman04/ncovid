@@ -5,7 +5,7 @@
     <div class="col-md-6">
         <strong> {{rowData.state}}</strong>
         <div class="search-hero" *ngIf="!noActualCase">
-                <input class="form-control" type="text" 
+                <input  id="dynamic-placeholder" class="form-control" type="text" 
                         name="search" (keyup)="applyFilter($event)" placeholder="Search Districts here" autocomplete="on" >
               </div>
         <div class="mobileHome">
@@ -135,8 +135,9 @@
                                 <mat-card-title>Growth Rate</mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                <h1 class="center">{{this.growthRatePer.toFixed(2)}}%</h1>
-                                 {{this.secondDate}} to {{this.firstDate}}, active cases  registered count
+                                <h1 class="center">{{growthRatePer.toFixed(2)}}%</h1>
+                                
+                                 {{secondDate}} to {{firstDate}}, active cases  registered count
                             </mat-card-content>
                  
                 </mat-card>
