@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { Observable, EMPTY } from 'rxjs';
-import { retry, catchError, shareReplay} from 'rxjs/operators'
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { retry } from 'rxjs/operators';
 import { CovidData } from './covidinterface.service';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class HttpService {
 
   getfullData(): Observable<CovidData> {
 
-    return this.http.get<any>("https://api.covid19india.org/data.json").pipe(
+    return this.http.get<any>('https://api.covid19india.org/data.json').pipe(
       retry(2)
     );
 
@@ -22,22 +22,22 @@ export class HttpService {
 
 
   getStateData(): Observable<any> {
-    return this.http.get<any>("https://api.covid19india.org/v2/state_district_wise.json").pipe(
+    return this.http.get<any>('https://api.covid19india.org/v2/state_district_wise.json').pipe(
       retry(2)
-    )
+    );
   }
 
 
-  getFullDataonDate(selectedDate) : Observable<any> {
-    return this.http.get<any>("https://api.covid19india.org/v3/min/data-"+selectedDate+".min.json").pipe(
+  getFullDataonDate(selectedDate): Observable<any> {
+    return this.http.get<any>('https://api.covid19india.org/v3/min/data-' + selectedDate + '.min.json').pipe(
       retry(2)
-    )
+    );
   }
 
 
 
   getStateWiseData(): Observable<any> {
-    return this.http.get<any>("https://api.covid19india.org/v3/min/data.min.json").pipe(retry(2))
+    return this.http.get<any>('https://api.covid19india.org/v3/min/data.min.json').pipe(retry(2));
   }
 
 }

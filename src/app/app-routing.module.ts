@@ -6,7 +6,7 @@ import { StateWiseComponent } from './state-wise/state-wise.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  {path:'state-wise/stateWise',component:StateWiseComponent}
+  {path: 'state-wise/stateWise', component: StateWiseComponent}
 ];
 
 @NgModule({
