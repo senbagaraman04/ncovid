@@ -168,30 +168,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
 
-  onSubmitButtonClick(): void {
+  // onSubmitButtonClick(): void {
 
-    this.loadCardData = false;
+  //   this.loadCardData = false;
 
-    const sday = new Date(this.from);
-    const tday = new Date();
+  //   const sday = new Date(this.from);
+  //   const tday = new Date();
 
 
-    if ( tday as any -  sday as any > 0 && this.from !== undefined) {
-      this.showTable = false;
-      this.showAlert = false;
-      this.httpService.getFullDataonDate(this.from).subscribe(particularResponse => {
-        this.receivedData = particularResponse;
-        this.selectedDate = this.from;
-      });
-    } else {
-      this.showAlert = true;
-    }
+  //   if ( tday as any -  sday as any > 0 && this.from !== undefined) {
+  //     this.showTable = false;
+  //     this.showAlert = false;
+  //     this.httpService.getFullDataonDate(this.from).subscribe(particularResponse => {
+  //       this.receivedData = particularResponse;
+  //       this.selectedDate = this.from;
+  //     });
+  //   } else {
+  //     this.showAlert = true;
+  //   }
 
-    setTimeout(() => {
-      $('#alertMessage').fadeOut('fast');
-  }, 30000);
+  //   setTimeout(() => {
+  //     $('#alertMessage').fadeOut('fast');
+  // }, 30000);
 
-  }
+  // }
 
 
 
