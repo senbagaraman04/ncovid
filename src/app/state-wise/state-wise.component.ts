@@ -39,7 +39,6 @@ export class StateWiseComponent implements OnInit {
   sp;
   ngOnInit(): void {
     this.rowData = JSON.parse(sessionStorage.getItem('rowData'));
-    console.log(this.rowData);
 
     if (this.rowData == null) {
       this.router.navigate(['']);
@@ -66,17 +65,7 @@ export class StateWiseComponent implements OnInit {
         });
     }
 
-    this.zone.runOutsideAngular(() => {
-      this.sp = new SuperPlaceholder({
-        placeholders: ['Salem', 'Bengaluru', 'Chennai', 'Mumbai', 'North Delhi',
-      'Chirapunji'],
-      preText: '',
-        stay: 100,
-        speed: 100,
-        element: '#dynamic-placeholder'
-      });
-      this.sp.init();
-    });
+    
 
   }
 
@@ -87,7 +76,6 @@ export class StateWiseComponent implements OnInit {
   tabledataFillup(districtData: any) {
        this.data = new MatTableDataSource(districtData);
        this.httpService.getStateWiseData().subscribe(particularResponse => {
-        console.log(particularResponse);
       });
   }
 
@@ -97,17 +85,14 @@ export class StateWiseComponent implements OnInit {
 
       const tday = new Date();
       tday.setDate(tday.getDate() - 2);
-      console.log(tday);
 
 // To compare the increase count of percentage of cases in the state
       const comparedValue = new Date();
       comparedValue.setDate(tday.getDate() - 1);
-      console.log(comparedValue);
 
 
       const tenDaysBefore = new Date();
       tenDaysBefore.setDate(tday.getDate() - 10);
-      console.log(tenDaysBefore);
 
       this.firstDate = tday.toISOString().slice(0, 10);
       this.secondDate = tenDaysBefore.toISOString().slice(0, 10);
@@ -126,19 +111,14 @@ export class StateWiseComponent implements OnInit {
       this.secondResponse = element[this.rowData.statecode];
 
       let difference = this.firstResponse.total.confirmed - this.secondResponse.total.confirmed;
-      console.log(difference);
       let tendaysBeforeConfirmed = this.secondResponse.total.confirmed;
       this.growthRatePer =  (((difference / tendaysBeforeConfirmed) * 100) / 10);
-      console.log(this.growthRatePer);
       this.growthCard = true;
 
 
 
       difference = this.comparedResponse.total.confirmed - this.secondResponse.total.confirmed;
-      console.log(difference);
       tendaysBeforeConfirmed = this.comparedResponse.total.confirmed;
-      console.log(tendaysBeforeConfirmed);
-      console.log( (((difference / tendaysBeforeConfirmed) * 100) / 9));
       this.differenceIncrease =  this.growthRatePer - (((difference / tendaysBeforeConfirmed) * 100) / 9);
       });
 
