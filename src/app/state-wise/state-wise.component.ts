@@ -51,9 +51,9 @@ export class StateWiseComponent implements OnInit {
     } else if (this.rowData.recovered === this.rowData.confirmed) {
       this.noActualCase = true;
       this.noActiveCase = true;
-      this.cardData();
+    //  this.cardData();
     } else {
-      this.cardData(); // Load only when they have active cases
+    //  this.cardData(); // Load only when they have active cases
       // The state may have/had active cases.
       this.subscription = timer(0, 100000).pipe(switchMap(() => this.httpService.getStateData())).subscribe(response => {
             response.forEach(element => {
