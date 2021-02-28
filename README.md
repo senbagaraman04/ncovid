@@ -1,6 +1,6 @@
 # Ramscovid
 
-# Hosting
+# Production server
 The website can be found at https://indiancovid19.herokuapp.com/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
@@ -27,4 +27,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+If found any issues and interested in contributing. Please raise a Issue. I'm happy to chat and proceed.
