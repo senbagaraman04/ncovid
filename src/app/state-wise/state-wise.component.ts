@@ -1,14 +1,9 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { SuperPlaceholder } from '../services/covidinterface.service';
 import { HttpService } from '../services/http.service';
 import { Subscription, timer } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
-
-
-
-
 
 @Component({
   selector: 'app-state-wise',

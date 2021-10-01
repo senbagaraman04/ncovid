@@ -1,42 +1,19 @@
-
-
-
 <div class="tealText">
-   COVID-19 INDIA TRACKER : <span *ngIf="country">{{country.lastupdatedtime}}</span>
+  COVID-19 INDIA TRACKER : <span *ngIf="country">{{country.lastupdatedtime}}</span>
   <span class="blinking">
     Lets break the chain ! <strong>Stay Indoors Stay Safe</strong>
   </span>
   <br>
   <hr>
- <div>
-   <ul>     
-     <li>Relaxations are updated differently to different Zones. Comply with local Authortities.<br></li>
-     <li> <strong>Stay Safe ! Corona is still floating around us. </strong> </li>
-   </ul>
-    </div>
+  <div>
+    <ul>
+      <li>Relaxations are updated differently to different Zones. Comply with local Authortities.<br></li>
+      <li> <strong>Stay Safe ! Corona is still floating around us. </strong> </li>
+    </ul>
+  </div>
 </div>
 
 <hr>
-
-
-  <!--Graph starts here -->
-  <ng-container class="chart-wrapper" *ngIf="showTable">
-    <div class="row" style="padding-top: 28px;margin-left:40%;">  
-        <span class="tealText">
-       
-        </span>
-        </div>
-        <div class="row">
-            <div class="chart-container" style="position: relative;margin-left:0px;height:50vh; width:50vw ">    
-            
-                <canvas id="covidCharts">{{ linechartConfirmed }}</canvas> 
-                      </div>
-        </div>
-      
-</ng-container >
-
-<!--Graph ends here -->
-
 
 
 
@@ -121,16 +98,16 @@
 
 
   <!--Search Bar Calendar and Submit Button-->
-<div class="row col-md-12">
-    
-<ng-container  *ngIf="showTable">
-    <div class="col-md-3">
-         <input  class="form-control" type="text" 
-                name="search" (keyup)="applyFilter($event)" placeholder="Search State here" autocomplete="off" >
-</div>
-</ng-container>
-       
-<!-- <ng-container>
+  <div class="row col-md-12">
+
+    <ng-container *ngIf="showTable">
+      <div class="col-md-3">
+        <input class="form-control" type="text" name="search" (keyup)="applyFilter($event)"
+          placeholder="Search State here" autocomplete="off">
+      </div>
+    </ng-container>
+
+    <!-- <ng-container>
       <div class="col-md-3">
            <input [(ngModel)]="from" id ="from" name="from"  type = "date" class = "datepicker" />
       </div>
@@ -153,14 +130,14 @@
       </div>
 
     </ng-container> -->
- 
-</div>
+
+  </div>
 
 
 
   <!--Table Starts here -->
 
-  <div class="example-container"  *ngIf="showTable">
+  <div class="example-container" *ngIf="showTable">
 
     <div class="col-md-12">
 
@@ -207,7 +184,8 @@
         <!-- Active  Column -->
         <ng-container matColumnDef="Active">
           <mat-header-cell *matHeaderCellDef>Total Active </mat-header-cell>
-          <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row" class="blueText" data-label="Active"> {{row.active}}
+          <mat-cell (click)="rowRedirect(row,$event)" *matCellDef="let row" class="blueText" data-label="Active">
+            {{row.active}}
 
           </mat-cell>
         </ng-container>
@@ -216,8 +194,9 @@
         <!-- Disclaimer column -->
         <ng-container matColumnDef="disclaimer">
           <mat-footer-cell *matFooterCellDef colspan="2">
-            The data has been sourced from various entities such as <a rel="noopener noreferrer"  href="https://www.covid19india.org/"
-              target="_blank">&nbsp; Covid19India &nbsp;</a> API, we are not responsbile for accuracy
+            The data has been sourced from various entities such as <a rel="noopener noreferrer"
+              href="https://www.covid19india.org/" target="_blank">&nbsp; Covid19India &nbsp;</a> API, we are not
+            responsbile for accuracy
           </mat-footer-cell>
         </ng-container>
 
@@ -241,10 +220,10 @@
 
 <!--If page is Loading show the below content-->
 <div class="loading card" *ngIf="loading">
-    <div class="progress">
-        <div class="indeterminate"></div>
-    </div>
-          
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
+
 </div>
 
 
@@ -255,49 +234,45 @@
 
 
 <!-- Archived Data Loads Here-->
- 
+
 <ng-container *ngIf="!showTable">
-  
-  <div  class="row"> 
-    
+
+  <div class="row">
+
     <div class="card mr-3" style="width:30%" *ngFor="let names of stateNames">
-       <div class="card-image waves-effect waves-block waves-light" (click)="clickedtoOpen(names)">
+      <div class="card-image waves-effect waves-block waves-light" (click)="clickedtoOpen(names)">
         <img class="activator" src="../../assets/states/india.jpg" alt="india">
       </div>
-       <div class="card-content" (click)="clickedtoOpen(names)">
-         <span  class="card-title activator grey-text text-darken-4">{{names}}<i  aria-hidden="true" (click)="clickedtoOpen(names)" class="material-icons right">more_vert</i></span>
-        
-          <small>
-              Click State name for more details
-          </small>
-       
-        </div>
-       <div class="card-reveal" *ngIf="loadCardData">
-         <span class="card-title grey-text text-darken-4">{{names}}<i class="material-icons right" (click)="loadCardData = false" aria-hidden="true">close</i></span>
-         <p>Date:{{selectedDate}}</p>
-         <p>Recovered:{{clickedData.total.recovered}} <small *ngIf="clickedData.delta"> +{{clickedData.delta.recovered}}</small></p>
-         <p>Confirmed:{{clickedData.total.confirmed}}<small *ngIf="clickedData.delta"> + {{clickedData.delta.confirmed}}</small></p>
-         <p>Deceased:{{clickedData.total.deceased}} <small *ngIf="clickedData.delta"> + {{clickedData.delta.deceased}}</small> </p>
-         <p>Tested:{{clickedData.total.tested}}     <small *ngIf="clickedData.delta"> + {{clickedData.delta.tested}}</small> </p>
+      <div class="card-content" (click)="clickedtoOpen(names)">
+        <span class="card-title activator grey-text text-darken-4">{{names}}<i aria-hidden="true"
+            (click)="clickedtoOpen(names)" class="material-icons right">more_vert</i></span>
 
-         <small class="text-muted">
-               Last updated {{clickedData.meta.tested.last_updated}}
-              <p> Source <a href="{{clickedData.meta.tested.source}}">Source</a> </p>
-         </small>
-       </div>
-       </div>
-    
-   </div>
-    
+        <small>
+          Click State name for more details
+        </small>
 
-  </ng-container>
+      </div>
+      <div class="card-reveal" *ngIf="loadCardData">
+        <span class="card-title grey-text text-darken-4">{{names}}<i class="material-icons right"
+            (click)="loadCardData = false" aria-hidden="true">close</i></span>
+        <p>Date:{{selectedDate}}</p>
+        <p>Recovered:{{clickedData.total.recovered}} <small *ngIf="clickedData.delta">
+            +{{clickedData.delta.recovered}}</small></p>
+        <p>Confirmed:{{clickedData.total.confirmed}}<small *ngIf="clickedData.delta"> +
+            {{clickedData.delta.confirmed}}</small></p>
+        <p>Deceased:{{clickedData.total.deceased}} <small *ngIf="clickedData.delta"> +
+            {{clickedData.delta.deceased}}</small> </p>
+        <p>Tested:{{clickedData.total.tested}} <small *ngIf="clickedData.delta"> + {{clickedData.delta.tested}}</small>
+        </p>
 
-  
+        <small class="text-muted">
+          Last updated {{clickedData.meta.tested.last_updated}}
+          <p> Source <a href="{{clickedData.meta.tested.source}}">Source</a> </p>
+        </small>
+      </div>
+    </div>
 
-
-
+  </div>
 
 
-
-   
-
+</ng-container>

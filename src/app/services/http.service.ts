@@ -9,12 +9,14 @@ import { CovidData } from './covidinterface.service';
 })
 export class HttpService {
 
-  constructor(private http: HttpClient)  { }
+  constructor(private http: HttpClient) { }
+
+  private covid19ApiURL = 'https://data.covid19india.org/';
 
 
   getfullData(): Observable<CovidData> {
 
-    return this.http.get<any>('https://api.covid19india.org/data.json').pipe(
+    return this.http.get<any>(this.covid19ApiURL + 'data.json').pipe(
       retry(2)
     );
 
@@ -22,14 +24,14 @@ export class HttpService {
 
 
   getStateData(): Observable<any> {
-    return this.http.get<any>('https://api.covid19india.org/v2/state_district_wise.json').pipe(
+    return this.http.get<any>(this.covid19ApiURL + 'v2/state_district_wise.json').pipe(
       retry(2)
     );
   }
 
 
   getFullDataonDate(selectedDate): Observable<any> {
-    return this.http.get<any>('https://api.covid19india.org/v3/min/data-' + selectedDate + '.min.json').pipe(
+    return this.http.get<any>(this.covid19ApiURL + 'v3/min/data-' + selectedDate + '.min.json').pipe(
       retry(2)
     );
   }
@@ -37,7 +39,7 @@ export class HttpService {
 
 
   getStateWiseData(): Observable<any> {
-    return this.http.get<any>('https://api.covid19india.org/v3/min/data.min.json').pipe(retry(2));
+    return this.http.get<any>(this.covid19ApiURL + 'v3/min/data.min.json').pipe(retry(2));
   }
 
 }
