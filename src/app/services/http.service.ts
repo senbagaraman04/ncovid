@@ -39,7 +39,7 @@ export class HttpService {
 
 
   getStateWiseData(): Observable<any> {
-    return this.http.get<any>(this.covid19ApiURL + 'v3/min/data.min.json');
+    return this.http.get<any>(this.covid19ApiURL + 'v4/min/data.min.json');
   }
 
 }
